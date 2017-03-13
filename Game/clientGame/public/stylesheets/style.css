@@ -1,8 +1,49 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+}
+
+/*Text style*/
+
+h1, p{
+  font-family: 'Hiragino Sans';
+  font-weight: 200;
+  color: lawngreen;
 }
 
 a {
   color: #00B7FF;
 }
+
+/*Welcome Screen*/
+
+.splashWelcomeContainer{
+  width: 100%;
+}
+
+.splashWelcomeTitle{
+  text-align: center;
+  font-size: 48pt;
+}
+
+.startButton{
+
+  width: 150px;
+  height: 75px;
+  border: solid lawngreen 2px;
+
+  margin: 0 -75px;
+  position: relative;
+  left: 50%;
+
+  font-size: 28pt;
+  font-family: 'Hiragino Sans';
+  font-weight: 200;
+  color: lawngreen;
+
+  border-radius: 10px;
+
+  background-color: black;
+}
+
