@@ -4,14 +4,25 @@
 }
 
 @font-face {
-  font-family: BionicKid;
-  src: url(BIONICKIDSSIMPLE.ttf);
+  font-family: Chromia;
+  src: url(Chromia.otf);
 }
 
 body {
   padding: 50px;
   /*font: 14px "FreshBot", Helvetica, Arial, sans-serif;*/
   background-color: black;
+}
+
+/*Code rain*/
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+/*adding a black bg to the body to make things clearer*/
+
+canvas {display: block;
+width: 100%  ;
+height: 400px;
 }
 
 /*Text style*/
@@ -23,15 +34,16 @@ p{
 }
 
 h1{
-  font-family: 'BionicKid';
+  font-family: 'Chromia';
   color: lawngreen;
-  font-size: 48pt;
+  font-size: 28pt;
 }
 
 a {
   font-family: FreshBot;
   color: #00B7FF;
 }
+
 
 /*Welcome Screen*/
 
@@ -42,6 +54,7 @@ a {
 .splashWelcomeTitle{
   text-align: center;
   font-size: 48pt;
+  padding: 50px;
 }
 
 .startButton{
