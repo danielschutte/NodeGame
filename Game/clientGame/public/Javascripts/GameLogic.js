@@ -12,14 +12,14 @@ var Players =[];
 
 //creates new player
 function CreateNewPlayer() {
-
-    Players.add(player);
+    myGameArea.context.fillRect(10,10,10,10);
+   // Players.add(player);
 }
 
 function startGame() {
 
     myGameArea.start();
-    player = new initPlayer(30,30,"red",10,120);
+
 }
 
 
