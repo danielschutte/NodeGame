@@ -1,20 +1,40 @@
+@font-face {
+  font-family: FreshBot;
+  src: url(FRESHBOT.TTF);
+}
+
+@font-face {
+  font-family: Chromia;
+  src: url(Chromia.otf);
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*font: 14px "FreshBot", Helvetica, Arial, sans-serif;*/
   background-color: black;
 }
 
+
+
 /*Text style*/
 
-h1, p{
-  font-family: 'Hiragino Sans';
+p{
+  font-family: 'FreshBot';
   font-weight: 200;
   color: lawngreen;
 }
 
+h1{
+  font-family: 'Chromia';
+  color: lawngreen;
+  font-size: 28pt;
+}
+
 a {
+  font-family: FreshBot;
   color: #00B7FF;
 }
+
 
 /*Welcome Screen*/
 
@@ -25,6 +45,7 @@ a {
 .splashWelcomeTitle{
   text-align: center;
   font-size: 48pt;
+  padding: 50px;
 }
 
 .startButton{
@@ -37,9 +58,9 @@ a {
   position: relative;
   left: 50%;
 
-  font-size: 28pt;
-  font-family: 'Hiragino Sans';
-  font-weight: 200;
+  font-size: 36pt;
+  font-family: 'FreshBot';
+  font-weight: 100;
   color: lawngreen;
 
   border-radius: 10px;
