@@ -1,25 +1,37 @@
 /**
  * Created by arjen on 16-3-2017.
  */
+
+ //players array
 var Players =[];
 
-// var player(id, name, color, xPos, yPos)   {
-//     this.id = id;
-//     this.xPos = xPos;
-//     this.yPos = yPos;
-//     this.name = name;
-// };
-
-//creates new player
-function CreateNewPlayer() {
-    myGameArea.context.fillRect(10,10,10,10);
-   // Players.add(player);
+//player object
+function Player(id, name, color, xPos, yPos){
+  this.id = id;
+  this.name = name;
+  this.xPos = xPos;
+  this.yPos = yPos;
+  this.Color = color;
 }
 
+//creates new player
+function CreateNewPlayerx() {
+    myGameArea.context.fillRect(10, 10, 10, 10);
+    // Players.add(player);
+}
+function CreateNewPlayer(name) {
+    var xPos = random();
+    var yPos = random();
+    var color = '#' + Math.random().toString(16).substr(-6);
+    var name = name;
+    var id = Players.length + 1;
+    Players.add(player(this.id, this.name, this.color, this.xPos, this.yPos));
+}
+
+//Initialize game
 function startGame() {
-
     myGameArea.start();
-
+    CreateNewPlayer(name)
 }
 
 
