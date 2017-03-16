@@ -1,3 +1,8 @@
+@font-face {
+  font-family: FreshBot;
+  src: url("clientGame/public/stylesheets/FRESHBOT.TFF");
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
