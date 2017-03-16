@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="89afda19-204e-48c0-a746-c25456868d7b" name="Default" comment="Placed socket.io logic in seperate file.">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="" />
+    <list default="true" id="89afda19-204e-48c0-a746-c25456868d7b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="980db33f-72f0-4929-aac3-fa9d1f46086f" name="Rejected commit: Default" comment="Placed socket.io logic in seperate file.">
@@ -57,7 +56,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1489685642000" expanded="true" signature="33875:33892" ph="..." />
+                <marker date="1489685642000" expanded="true" signature="33875:33910" ph="..." />
+                <marker date="1489685642000" expanded="true" signature="33875:33923" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -315,12 +318,20 @@
       <workItem from="1489414915663" duration="5000" />
       <workItem from="1489414933327" duration="2376000" />
       <workItem from="1489652827716" duration="5991000" />
-      <workItem from="1489660350144" duration="3935000" />
+      <workItem from="1489660350144" duration="4028000" />
     </task>
+    <task id="LOCAL-00001" summary="Placed socket.io logic in seperate file.">
+      <created>1489685635763</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1489685635763</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15114000" />
+    <option name="totallyTimeSpent" value="15207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="100" y="79" width="1436" height="980" extended-state="0" />
@@ -591,7 +602,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1489685642000" expanded="true" signature="33875:33892" ph="..." />
+            <marker date="1489685642000" expanded="true" signature="33875:33910" ph="..." />
+            <marker date="1489685642000" expanded="true" signature="33875:33923" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
