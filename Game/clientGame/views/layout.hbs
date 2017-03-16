@@ -7,6 +7,9 @@
       <script>
           var socket = io();
       </script>
+      {{#if customJs}}
+      <script src="{{customJs}}"></script>
+      {{/if}}
   </head>
   <body>
     {{{body}}}

@@ -3,9 +3,12 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('game', { title: 'The Game'});
+
+    res.render('gameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
 });
 
-//router.post('');
+router.get('/NewPlayer', function(req, res, next) {
+    res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/playerSelection.js'});
+});
 
 module.exports = router;
