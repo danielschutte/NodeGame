@@ -1,23 +1,35 @@
 @font-face {
   font-family: FreshBot;
-  src: url("clientGame/public/stylesheets/FRESHBOT.TFF");
+  src: url(FRESHBOT.TTF);
+}
+
+@font-face {
+  font-family: BionicKid;
+  src: url(BIONICKIDSIMPLE.tff);
 }
 
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*font: 14px "FreshBot", Helvetica, Arial, sans-serif;*/
   background-color: black;
 }
 
 /*Text style*/
 
-h1, p{
-  font-family: 'Hiragino Sans';
+p{
+  font-family: 'FreshBot';
   font-weight: 200;
   color: lawngreen;
 }
 
+h1{
+  font-family: BionicKid;
+  color: lawngreen;
+  font-size: 48pt;
+}
+
 a {
+  font-family: FreshBot;
   color: #00B7FF;
 }
 
@@ -42,9 +54,9 @@ a {
   position: relative;
   left: 50%;
 
-  font-size: 28pt;
-  font-family: 'Hiragino Sans';
-  font-weight: 200;
+  font-size: 36pt;
+  font-family: 'FreshBot';
+  font-weight: 100;
   color: lawngreen;
 
   border-radius: 10px;
