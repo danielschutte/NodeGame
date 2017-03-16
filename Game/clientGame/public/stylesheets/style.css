@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: BionicKid;
-  src: url(BIONICKIDSIMPLE.tff);
+  src: url(BIONICKIDSSIMPLE.ttf);
 }
 
 body {
@@ -23,7 +23,7 @@ p{
 }
 
 h1{
-  font-family: BionicKid;
+  font-family: 'BionicKid';
   color: lawngreen;
   font-size: 48pt;
 }
