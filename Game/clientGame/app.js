@@ -17,6 +17,8 @@ var io = require('socket.io')(server);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.set('images', path.join(__dirname, 'images'));
+app.set('javascripts', path.join(__dirname, 'javascripts'));
+app.set('sounds', path.join(__dirname, 'sounds'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
