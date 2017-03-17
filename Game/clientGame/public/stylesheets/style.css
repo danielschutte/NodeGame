@@ -26,6 +26,7 @@ p, td{
 
 td{
   font-size: 24pt;
+  width: 120px;
 }
 
 h1{
@@ -91,7 +92,7 @@ label{
 .playerOptionsTable{
   position: relative;
   display: inline-block;
-  width: 300px;
+  width: 400px;
   left: 50%;
   margin: 0 -190px;
 
