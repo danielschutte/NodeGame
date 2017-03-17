@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/NewPlayer', function(req, res, next) {
-    res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/playerSelection.js'});
+    res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/newPlayer.js'});
 });
 
 module.exports = router;
