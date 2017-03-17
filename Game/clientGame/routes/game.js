@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-  res.render('gameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
+    res.render('gameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
 });
 
 router.get('/NewPlayer', function(req, res, next) {
