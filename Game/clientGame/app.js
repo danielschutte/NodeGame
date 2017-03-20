@@ -8,15 +8,16 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var game = require('./routes/game');
 
-
 var app = express();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var io = require('./bin/sockets').listen(server);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.set('images', path.join(__dirname, 'images'));
+app.set('javascripts', path.join(__dirname, 'javascripts'));
+app.set('sounds', path.join(__dirname, 'sounds'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -28,7 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/game', game);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,12 +47,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// some socket stuff
-
- io.on('connection', function(socket){
-     console.log('a user connected');
-     //CreateNewPlayer();
- });
 
 module.exports = {app: app, server: server};

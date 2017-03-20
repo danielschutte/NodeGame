@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: FreshBot;
   src: url(FRESHBOT.TTF);
@@ -15,13 +16,16 @@ body {
 }
 
 
-
 /*Text style*/
 
-p{
+p, td{
   font-family: 'FreshBot';
   font-weight: 200;
   color: lawngreen;
+}
+
+td{
+  font-size: 24pt;
 }
 
 h1{
@@ -31,10 +35,14 @@ h1{
 }
 
 a {
-  font-family: FreshBot;
-  color: #00B7FF;
+  font-family: 'FreshBot';
+  color: lawngreen;
 }
 
+label{
+  font-family: 'FreshBot';
+  color: lawngreen;
+}
 
 /*Welcome Screen*/
 
@@ -68,3 +76,107 @@ a {
   background-color: black;
 }
 
+
+/*New Player*/
+
+.newPlayerContainer{
+  width: 100%;
+}
+
+.newPlayerTitle{
+  width: 100%;
+  text-align: center;
+}
+
+.playerOptionsTable{
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  left: 50%;
+  margin: 0 -190px;
+
+}
+
+.newPlayerNameInput {
+  border: solid 2px lawngreen;
+  border-radius: 5px;
+  background-color: black;
+  font-family: 'FreshBot';
+  font-size: 24pt;
+  color: lawngreen;
+  height: 25px;
+  width: 250px;
+}
+
+.newPlayerColorInput {
+  border: solid 2px lawngreen;
+  border-radius: 5px;
+  background-color: black;
+  font-family: 'FreshBot';
+  font-size: 18pt;
+  color: lawngreen;
+  height: 35px;
+  width: 255px;
+}
+
+.line1{
+  background-color: lawngreen;
+  height: 2px;
+  width: 15px;
+  float: right;
+  margin-top: 12.5px;
+  margin-right: 5px;
+  transform: rotate(-45deg);
+  transition: 0.2s;
+}
+.line2{
+  background-color: lawngreen;
+  height: 2px;
+  width: 15px;
+  float: right;
+  margin-top: 12.5px;
+  margin-right: -5px;
+  transform: rotate(45deg);
+  transition: 0.2s;
+
+}
+
+.colorList{
+  visibility: hidden;
+  opacity: 0;
+  color: lawngreen;
+  transition: 0.2s;
+  list-style: none;
+}
+
+.colorList ul{
+  margin: 5px 0;
+}
+
+.colorDropDown{
+  position: fixed;
+  width: 252px;
+  height: 27px;
+  margin-top: -12px;
+  background-color: black;
+  border: solid lawngreen 2px;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.change .colorDropDown{
+  height: 250px;
+}
+
+.change .colorList{
+  visibility: visible;
+  opacity: 100;
+}
+
+.change .line1{
+  transform: rotate(45deg);
+}
+
+.change .line2{
+  transform: rotate(-45deg);
+}
