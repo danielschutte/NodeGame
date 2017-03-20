@@ -105,7 +105,7 @@ label{
   font-family: 'FreshBot';
   font-size: 24pt;
   color: lawngreen;
-  height: 25px;
+  height: 35px;
   width: 250px;
 }
 
@@ -120,12 +120,17 @@ label{
   width: 255px;
 }
 
+.listArrow{
+  float: right;
+  height: 30px;
+}
+
 .line1{
   background-color: lawngreen;
   height: 2px;
   width: 15px;
   float: right;
-  margin-top: 12.5px;
+  margin-top: 17.5px;
   margin-right: 5px;
   transform: rotate(-45deg);
   transition: 0.2s;
@@ -135,7 +140,7 @@ label{
   height: 2px;
   width: 15px;
   float: right;
-  margin-top: 12.5px;
+  margin-top: 17.5px;
   margin-right: -5px;
   transform: rotate(45deg);
   transition: 0.2s;
@@ -148,16 +153,27 @@ label{
   color: lawngreen;
   transition: 0.1s;
   list-style: none;
+  margin: 0 0;
 }
 
-.colorList ul{
-  margin: 5px 0;
+.colorList li{
+  width: 180px;
+  border-radius: 10px;
+}
+
+.colorList li:hover{
+  list-style: circle;
+}
+
+.selectedColor{
+  margin: 0 40px;
+  display: inline-block;
 }
 
 .colorDropDown{
   position: fixed;
   width: 252px;
-  height: 27px;
+  height: 35px;
   margin-top: -12px;
   background-color: black;
   border: solid lawngreen 2px;
