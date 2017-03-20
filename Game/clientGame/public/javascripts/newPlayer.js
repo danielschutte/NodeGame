@@ -13,7 +13,7 @@ var colors = {"colors" : [
 
 $(function(){
     $.each(colors.colors, function(i, item){
-        $('#colorList').append('<li id='+item.id+' style="color:'+item.hex+'" onclick="setColor()">'+item.name+'</li>');
+        $('#colorList').append('<li id='+item.id+' style="color:'+item.hex+'" onclick="setColor(this)">'+item.name+'</li>');
     });
 });
 
@@ -30,5 +30,11 @@ function setColor(click){
     var x = document.getElementById("selectedColor");
     $("#selectedColor").empty();
     var y = document.getElementById(click.id);
-    x.append();
+    var color = colors.colors[click.id];
+    x.append(color.name);
+
+    $('#selectedColor').css('color', color.hex);
+
+    dropDown(this);
+
 }
