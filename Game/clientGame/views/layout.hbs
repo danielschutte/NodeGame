@@ -8,10 +8,10 @@
           var socket = io();
       </script>
       {{#if customJs}}
-      <script src="{{customJs}}"></script>
       {{/if}}
   </head>
   <body>
+<<<<<<< HEAD
   <div class="container">
       {{#if errors}}
         {{#each errors}}
@@ -41,6 +41,11 @@
       </footer>
 
   </div> <!-- /container -->
+=======
+    {{{body}}}
+  <script src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
+    <script src="{{customJs}}"></script>
+>>>>>>> master
 
   </body>
 </html>

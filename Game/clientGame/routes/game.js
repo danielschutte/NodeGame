@@ -3,6 +3,7 @@ var express = require('express');
 var logic = require('../bin/logic');
 var router = express.Router();
 
+<<<<<<< HEAD
 
 // Game routers
 router.get('/GameField', function(req, res, next) {
@@ -12,6 +13,16 @@ router.get('/GameField', function(req, res, next) {
 // New player
 router.get('/newPlayer', function(req, res, next) {
     res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/playerSelection.js'});
+=======
+/* GET users listing. */
+router.get('/GameField', function(req, res, next) {
+
+    res.render('GameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
+});
+
+router.get('/NewPlayer', function(req, res, next) {
+    res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/newPlayer.js'});
+>>>>>>> master
 });
 
 // Player has to choose a username and a color, when failed redirect back to newplayer

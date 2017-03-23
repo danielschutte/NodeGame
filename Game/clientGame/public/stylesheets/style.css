@@ -16,13 +16,17 @@ body {
 }
 
 
-
 /*Text style*/
 
-p{
+p, td{
   font-family: 'FreshBot';
   font-weight: 200;
   color: lawngreen;
+}
+
+td{
+  font-size: 24pt;
+  width: 120px;
 }
 
 h1{
@@ -73,3 +77,132 @@ label{
   background-color: black;
 }
 
+#continueButton{
+  margin-top: 40px;
+  font-size: 26pt;
+  height: 50px;
+  width: 200px;
+
+}
+
+
+/*New Player*/
+
+.newPlayerContainer{
+  width: 100%;
+}
+
+.newPlayerTitle{
+  width: 100%;
+  text-align: center;
+}
+
+.playerOptionsTable{
+  position: relative;
+  display: inline-block;
+  width: 400px;
+  left: 50%;
+  margin: 0 -190px;
+
+}
+
+.newPlayerNameInput {
+  border: solid 2px lawngreen;
+  border-radius: 5px;
+  background-color: black;
+  font-family: 'FreshBot';
+  font-size: 24pt;
+  color: lawngreen;
+  height: 35px;
+  width: 250px;
+}
+
+.newPlayerColorInput {
+  border: solid 2px lawngreen;
+  border-radius: 5px;
+  background-color: black;
+  font-family: 'FreshBot';
+  font-size: 18pt;
+  color: lawngreen;
+  height: 35px;
+  width: 255px;
+}
+
+.listArrow{
+  float: right;
+  height: 30px;
+}
+
+.line1{
+  background-color: lawngreen;
+  height: 2px;
+  width: 15px;
+  float: right;
+  margin-top: 17.5px;
+  margin-right: 5px;
+  transform: rotate(-45deg);
+  transition: 0.2s;
+}
+.line2{
+  background-color: lawngreen;
+  height: 2px;
+  width: 15px;
+  float: right;
+  margin-top: 17.5px;
+  margin-right: -5px;
+  transform: rotate(45deg);
+  transition: 0.2s;
+
+}
+
+.colorList{
+  visibility: hidden;
+  opacity: 0;
+  color: lawngreen;
+  transition: 0.1s;
+  list-style: none;
+  margin: 0 0;
+}
+
+.colorList li{
+  width: 180px;
+  border-radius: 10px;
+}
+
+.colorList li:hover{
+  list-style: circle;
+}
+
+.selectedColor{
+  margin: 0 40px;
+  display: inline-block;
+}
+
+.colorDropDown{
+  position: fixed;
+  width: 252px;
+  height: 35px;
+  margin-top: -12px;
+  background-color: black;
+  border: solid lawngreen 2px;
+  border-radius: 5px;
+  transition: 0.4s;
+  z-index: 10000;
+}
+
+.change .colorDropDown{
+  height: inherit;
+}
+
+.change .colorList{
+  visibility: visible;
+  opacity: 100;
+}
+
+.change .line1{
+  transform: rotate(45deg);
+}
+
+.change .line2{
+  transform: rotate(-45deg);
+}

@@ -1,6 +1,7 @@
-<div class="newPlayer">
+<div class="newPlayerContainer">
     <h1 class="newPlayerTitle">{{title}}</h1>
 
+<<<<<<< HEAD
     <li>
         <ul>
             <form action="./newPlayer" method="post">
@@ -18,5 +19,38 @@
                 </select>
             </ul>
         </li>
+=======
+>>>>>>> master
 
+<form action="./NewPlayer" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+    <table class="playerOptionsTable">
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" class="newPlayerNameInput"></td>
+        </tr>
+        <tr>
+            <td>Color:</td>
+            <td>
+                <div id="dropDown" class="dropDownContainer">
+
+                    <div class="colorDropDown">
+                        <p name="playerColor" id="selectedColor" class="selectedColor"></p>
+                        <div id="listArrow" class="listArrow" onclick="dropDown(this)">
+                            <div class="line1"></div>
+                            <div class="line2"></div>
+                        </div>
+                        <ul id="colorList" class="colorList">
+                        </ul>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" class="startButton" id="continueButton" value="Continue"></td>
+        </tr>
+    </table>
+</form>
 </div>
