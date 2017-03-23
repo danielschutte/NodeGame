@@ -12,6 +12,8 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('./bin/sockets').listen(server);
 
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

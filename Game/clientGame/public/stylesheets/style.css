@@ -18,7 +18,10 @@ body {
 canvas{
   border: solid lawngreen 2px;
   border-radius: 10px;
-  width: 90%;
+  /*width: 90%;*/
+  width: 500px;
+  height: 500px;
+  background-color: aliceblue;
 
 }
 
@@ -209,12 +212,3 @@ label{
 == GAME ==
 */
 
-#gameview {
-	border:solid 2px #999;
-	height : 480px;
-	margin: auto;
-	left:0; right:0; top:0; bottom:0;
-	position: absolute;
-	width : 720px;
-	z-index:100;
-}

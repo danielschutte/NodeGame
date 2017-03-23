@@ -1,39 +1,108 @@
 /**
  * Created by arjen on 16-3-2017.
  */
-var myGameArea;
-var ctx;
+ $(document).ready(function(){startGame();});
+
+ function startGame(){
+ var myGameArea = document.getElementById("gameview").getContext("2d");
 var socket = io.connect('/');
-var playerWidth = 10;
-var playerHeight = 10;
-var xPos = 10;
-var yPos =10;
-//var playerId = 0;
-$(document).ready(function(){startGame();});
+     //var socket = io();
+myGameArea.color = "#FF0000";
 
+socket.on('newPositions',function (data) {
+    myGameArea.clearRect(0,0,500,500) //check
+    for(var i = 0;i < data.length; i++)
+    myGameArea.fillText('P',data[i].x,data[i].y);
+});
+ }
+// var ctx;
 
-
-function startGame() {
-    myGameArea = document.getElementById("gameview");
-    ctx = myGameArea.getContext("2d");
-    //myGameArea.start();
-    socket.on('connect',testCon());
-}
-
-function testCon() {
-   // alert("test");
-     CreateNewPlayerx();
-}
-
-//creates new player
-function CreateNewPlayerx() {
-    ctx.fillStyle="#FF0000";
-    //place new player random on canvas
-    // xPos +=30;
-    // yPos +=30;
-    ctx.fillRect(xPos, yPos, playerWidth, playerHeight);
-    // Players.add(player);
-}
+// var playerWidth = 10;
+// var playerHeight = 10;
+// var xPos = 10;
+// var yPos =10;
+// var player;
+//
+// //var playerId = 0;
+// $(document).ready(function(){startGame();});
+// // socket.onconnect('msg',onMessage);
+// //
+// // function onMessage(text) {
+// //     $("#messageFromServer").appendChild(text);
+// //
+// // }
+// function startGame() {
+//     myGameArea = document.getElementById("gameview");
+//     ctx = myGameArea.getContext("2d");
+//     //myGameArea.start();
+//     socket.on('connect',testCon());
+// }
+//
+// function testCon() {
+//    // alert("test");
+//      CreateNewPlayerx();
+// }
+//
+// //creates new player
+// function CreateNewPlayerx() {
+//     player = new Object();
+//     player.x = xPos;
+//     player.y = yPos;
+//     ctx.fillStyle="#FF0000";
+//     //place new player random on canvas
+//     // xPos +=30;
+//     // yPos +=30;
+//     ctx.fillRect(xPos, yPos, playerWidth, playerHeight);
+//     // Players.add(player);
+//     socket.emit('playerCreated');
+// }
+//
+// var Bullet = function (angle) {
+//     var self = Entity();
+//     self.id = Math.random();
+//     self.speedX = Math.cos(angle/180*Math.PI)*10;
+//     self.speedY = Math.sin(angle/180*Math.PI)*10;
+//
+//     self.timer = 0;
+//     self.toRemove = false;
+//     var super_update = self.update;
+//     self.update = function () {
+//         if(self.timer ++> 100)
+//         {
+//            self.toRemove = true;
+//            super_update();
+//
+//         }
+//         Bullet.list[self.id] = self;
+//         return self;
+//     }
+// }
+// Bullet.list = {};
+// Bullet.update = function () {
+//     if(Math.random() < 0.1)
+//     {
+//         Bullet(Math.random()*360);
+//     }
+//     var pack =[];
+//     for(var i in Bullet.list[i])
+//     {
+//         var bul = Bullet.list[i];
+//         bullet.update();
+//         pack.push({
+//             x:bullet.x,
+//             y:bullet.y,
+//         });
+//
+//     }
+//     return pack;
+// }
+//
+// setInterval(function () {
+//     var pack = {
+//         player:Player.update(),
+//         bullet:Bullet.update(),
+//     }
+// },1000/25);
 
 //  //players array
 // var Players =[];
