@@ -3,26 +3,14 @@ var express = require('express');
 var logic = require('../bin/logic');
 var router = express.Router();
 
-<<<<<<< HEAD
-
-// Game routers
+/* GET users listing. */
 router.get('/GameField', function(req, res, next) {
-    res.render('GameField', {title: 'Create a new player', customJs: '/Javascripts/playerSelection.js'});
+    res.render('GameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
 });
 
 // New player
 router.get('/newPlayer', function(req, res, next) {
-    res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/playerSelection.js'});
-=======
-/* GET users listing. */
-router.get('/GameField', function(req, res, next) {
-
-    res.render('GameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
-});
-
-router.get('/NewPlayer', function(req, res, next) {
     res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/newPlayer.js'});
->>>>>>> master
 });
 
 // Player has to choose a username and a color, when failed redirect back to newplayer
@@ -39,7 +27,7 @@ router.post('/newPlayer', function(req, res, next) {
     var errors = req.validationErrors();
 
      if(errors){
-       res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/playerSelection.js', errors:errors});
+       res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/newPlayer.js', errors:errors});
      }
      else
      {
