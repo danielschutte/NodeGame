@@ -1,16 +1,13 @@
 <div class="newPlayerContainer">
     <h1 class="newPlayerTitle">{{title}}</h1>
 
-<<<<<<< HEAD
 
-<form action="./NewPlayer" method="POST">
-=======
 <form action="./newPlayer" method="POST">
->>>>>>> master
     <table class="playerOptionsTable">
         <tr>
             <td>Name:</td>
             <td><input name="playerName" type="text" class="newPlayerNameInput"></td>
+
         </tr>
         <tr>
             <td>Color:</td>
@@ -32,7 +29,11 @@
             </td>
         </tr>
         <tr>
-            <td></td>
+            <td>{{#if errors}}
+            {{#each errors}}
+                <p class="error">{{this.msg}}</p>
+            {{/each}}
+        {{/if}}</td>
             <td><input type="submit" class="startButton" id="continueButton" value="Continue"></td>
         </tr>
     </table>

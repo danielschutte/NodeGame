@@ -5,7 +5,7 @@
 var colors = {"colors" : [
     {"id" : 0, "name":"green", "hex":"#7CFC00"},
     {"id" : 1,"name":"red", "hex":"#ff0000"},
-    {"id" : 2,"name":"blue", "hex":"#0000ff"},
+    {"id" : 2,"name":"blue", "hex":"#00e4ff"},
     {"id" : 3,"name":"yellow", "hex":"#ffff00"},
     {"id" : 4,"name":"pink", "hex":"#ff00ce"}
 ]};
@@ -34,7 +34,7 @@ function setColor(click){
     var y = document.getElementById(click.id);
     var color = colors.colors[click.id];
     x.append(color.name);
-    $('input[name ="color"]').val(color.hex);
+    $('input[name ="playerColor"]').val(color.hex);
 
     $('#selectedColor').css('color', color.hex);
 
