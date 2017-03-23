@@ -15,6 +15,11 @@ body {
 	overflow: hidden;
 }
 
+.error{
+  color: red;
+  font-size: 16pt;
+}
+
 /*Text style*/
 
 p,
@@ -71,6 +76,14 @@ label {
 	color: lawngreen;
 	border-radius: 10px;
 	background-color: black;
+}
+
+#continueButton{
+  margin-top: 40px;
+  font-size: 26pt;
+  height: 50px;
+  width: 200px;
+
 }
 
 
@@ -176,6 +189,7 @@ label {
 	transition: 0.4s;
 }
 
+
 .change .colorDropDown {
 	height: inherit;
 }
@@ -183,6 +197,22 @@ label {
 .change .colorList {
 	visibility: visible;
 	opacity: 100;
+	
+.selectedColor{
+  margin: 0 0;
+  display: inline-block;
+}
+
+.colorDropDown{
+  position: fixed;
+  width: 252px;
+  height: 35px;
+  margin-top: -12px;
+  background-color: black;
+  border: solid lawngreen 2px;
+  border-radius: 5px;
+  transition: 0.4s;
+  z-index: 10000;
 }
 
 .change .line1 {
