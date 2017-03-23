@@ -1,4 +1,5 @@
 var express = require('express');
+var logic = require('../bin/logic');
 var router = express.Router();
 
 /* GET home page. */
