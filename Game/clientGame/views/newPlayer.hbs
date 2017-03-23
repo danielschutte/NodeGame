@@ -1,13 +1,11 @@
 <div class="newPlayerContainer">
     <h1 class="newPlayerTitle">{{title}}</h1>
 
-
-<form action="./NewPlayer" method="POST">
-    <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+<form action="./newPlayer" method="POST">
     <table class="playerOptionsTable">
         <tr>
             <td>Name:</td>
-            <td><input type="text" class="newPlayerNameInput"></td>
+            <td><input name="playerName" type="text" class="newPlayerNameInput"></td>
         </tr>
         <tr>
             <td>Color:</td>
