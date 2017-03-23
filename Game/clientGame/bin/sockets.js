@@ -12,14 +12,13 @@ module.exports.listen = function(server){
     io = socketio.listen(server);
 
     //var players = [];
-    io.on('connection', function(socket) {
-        console.log('het werkt ');
-        // if(app.locals.player){
-        //     var player = app.locals.player;
-        //     app.locals.player = null;
-        //     players.add(player);
-        //     console.log(players);
-        // }
+    var game = io
+    .of('/Game')
+    .on('connection', function(socket) {
+        console.log('Player connected');
+       socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
     });
     return io;
 };
