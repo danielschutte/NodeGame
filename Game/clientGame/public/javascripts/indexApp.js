@@ -2,8 +2,9 @@
  * Created by dschutte on 16-03-17.
  */
 
-function soundOnClick(){
+function startOnClick(){
     document.getElementById('explosion').play();
+
 }
 
 
