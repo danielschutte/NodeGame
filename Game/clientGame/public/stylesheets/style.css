@@ -197,8 +197,9 @@ label {
 .change .colorList {
 	visibility: visible;
 	opacity: 100;
-	
-.selectedColor{
+}
+
+.selectedColor {
   margin: 0 0;
   display: inline-block;
 }
