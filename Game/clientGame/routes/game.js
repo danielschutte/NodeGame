@@ -20,7 +20,7 @@ router.post('/newPlayer', function(req, res, next) {
     var playerColor = req.body.playerColor;
 
     // check the data
-    req.checkBody('playerName', 'Fill in a username').notEmpty();
+    req.checkBody('playerName', 'Fill in a name!').notEmpty();
     req.checkBody('playerColor', 'Pick a color!').notEmpty();
 
     // collect errors
