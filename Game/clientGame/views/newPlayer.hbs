@@ -1,11 +1,13 @@
 <div class="newPlayerContainer">
     <h1 class="newPlayerTitle">{{title}}</h1>
 
+
 <form action="./newPlayer" method="POST">
     <table class="playerOptionsTable">
         <tr>
             <td>Name:</td>
             <td><input name="playerName" type="text" class="newPlayerNameInput"></td>
+
         </tr>
         <tr>
             <td>Color:</td>
@@ -13,7 +15,8 @@
                 <div id="dropDown" class="dropDownContainer">
 
                     <div class="colorDropDown">
-                        <p name="playerColor" id="selectedColor" class="selectedColor"></p>
+                        <p id="selectedColor" class="selectedColor"></p>
+                        <input name="playerColor" type="hidden" value="">
                         <div id="listArrow" class="listArrow" onclick="dropDown(this)">
                             <div class="line1"></div>
                             <div class="line2"></div>
@@ -26,7 +29,11 @@
             </td>
         </tr>
         <tr>
-            <td></td>
+            <td>{{#if errors}}
+            {{#each errors}}
+                <p class="error">{{this.msg}}</p>
+            {{/each}}
+        {{/if}}</td>
             <td><input type="submit" class="startButton" id="continueButton" value="Continue"></td>
         </tr>
     </table>

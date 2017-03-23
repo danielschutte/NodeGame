@@ -15,6 +15,10 @@ body {
   background-color: black;
 }
 
+.error{
+  color: red;
+  font-size: 16pt;
+}
 
 /*Text style*/
 
@@ -174,7 +178,7 @@ label{
 }
 
 .selectedColor{
-  margin: 0 40px;
+  margin: 0 0;
   display: inline-block;
 }
 
