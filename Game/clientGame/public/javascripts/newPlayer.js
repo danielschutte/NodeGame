@@ -11,11 +11,11 @@ var colors = {"colors" : [
 ]};
 
 
-$(function(){
+(function(){
     $.each(colors.colors, function(i, item){
         $('#colorList').append('<li id='+item.id+' style="color:'+item.hex+'" onclick="setColor(this)">'+item.name+'</li>');
     });
-});
+}());
 
 
 
@@ -25,6 +25,8 @@ function dropDown(click){
     var x = document.getElementById("dropDown");
     x.classList.toggle("change");
 }
+
+
 
 function setColor(click){
     var x = document.getElementById("selectedColor");
@@ -37,4 +39,8 @@ function setColor(click){
 
     dropDown(this);
 
+}
+
+function Continue(click){
+    location.href = "./GameField/";
 }

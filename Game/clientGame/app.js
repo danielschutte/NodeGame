@@ -27,15 +27,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/game', game);
+//CSRF
+app.use(csrf());
+app.use(function(req, res, next){
+  res.cookie('XSRF-TOKEN', req.csrfToken());
+  res.locals.csrftoken = req.csrfToken();
+  next();
+})
+app.use(app.router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
+
+app.use('/', index);
+app.use('/game', game);
+
 
 // error handler
 app.use(function(err, req, res, next) {

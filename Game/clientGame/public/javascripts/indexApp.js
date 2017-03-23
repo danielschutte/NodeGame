@@ -27,11 +27,11 @@
     var sound = $('#explosion');
 
     sound.on("ended", function(){
-        location.href = "./game/newPlayer";
+        location.href = "./Game/NewPlayer";
         })
 
 
-    $('#start').click(function(){
+    $('#startButton').click(function(){
         sound[0].play();
     });
 
