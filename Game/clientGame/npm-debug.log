@@ -7,7 +7,7 @@
 6 silly lifecycle clientgame@0.0.0~prestart: no script for prestart, continuing
 7 info lifecycle clientgame@0.0.0~start: clientgame@0.0.0
 8 verbose lifecycle clientgame@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle clientgame@0.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/lenardborn/NodeGame/Game/clientGame/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:export PATH=~/.composer/vendor/bin:$PATH:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/lenardborn/Desktop/Mongo/bin
+9 verbose lifecycle clientgame@0.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/lenardborn/NodeGame/Game/clientGame/node_modules/.bin:/Users/lenardborn/PhpstormProjects/Node1/socketTest/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:export PATH=~/.composer/vendor/bin:$PATH:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/lenardborn/Desktop/Mongo/bin
 10 verbose lifecycle clientgame@0.0.0~start: CWD: /Users/lenardborn/NodeGame/Game/clientGame
 11 silly lifecycle clientgame@0.0.0~start: Args: [ '-c', 'node ./bin/www' ]
 12 silly lifecycle clientgame@0.0.0~start: Returned: code: 1  signal: null
