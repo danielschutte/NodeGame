@@ -1,51 +1,98 @@
 /**
  * Created by arjen on 16-3-2017.
  */
-var myGameArea;
+
 var ctx;
+var localPlayer;
 var socket = io.connect('/');
 var playerWidth = 10;
 var playerHeight = 10;
-var xPos = 10;
-var yPos =10;
-//var playerId = 0;
-$(document).ready(function(){startGame();});
+var myGameArea;
 
+$(document).ready(function () {
+	startGame();
+});
 
 
 function startGame() {
-    myGameArea = document.getElementById("gameview");
-    ctx = myGameArea.getContext("2d");
-    //myGameArea.start();
-    socket.on('connect',testCon());
+	myGameArea = document.getElementById("gameview");
+	myGameArea.height = window.innerHeight;
+	myGameArea.width = window.innerWidth;
+
+	ctx = myGameArea.getContext("2d");
+	socket.on('connect', testCon());
+
+	window.addEventListener("keydown", doKeyDown, true);
 }
 
 function testCon() {
-   // alert("test");
-     CreateNewPlayerx();
+	createLocalPlayer();
 }
 
 //creates new player
-function CreateNewPlayerx() {
-    ctx.fillStyle="#FF0000";
-    //place new player random on canvas
-    // xPos +=30;
-    // yPos +=30;
-    ctx.fillRect(xPos, yPos, playerWidth, playerHeight);
-    // Players.add(player);
+function createLocalPlayer() {
+	var localPlayerID = Math.random;
+	localPlayer = new Player(localPlayerID, "Garret", "#FF0000", 50, 40);
+	localPlayer.drawPlayer();
 }
 
-//  //players array
-// var Players =[];
-//
-// //player object
-// function Player(id, name, color, xPos, yPos){
-//   this.id = id;
-//   this.name = name;
-//   this.xPos = xPos;
-//   this.yPos = yPos;
-//   this.Color = color;
-// }
+//New object: Player
+function Player(id, name, color, xPos, yPos) {
+	this.id = id;
+	this.name = name;
+	this.Color = color;
+	this.xPosition = xPos;
+	this.yPosition = yPos;
+
+	//Local func to draw player on screen
+	this.drawPlayer = function () {
+
+		//Clear area before rendering player
+		clearMyGameArea();
+
+		ctx.fillStyle = this.Color;
+		ctx.fillRect(this.xPosition, this.yPosition, 30, 30);
+		ctx.font = "20px Arial";
+		ctx.fillStyle = "#FFF";
+		ctx.fillText(this.name, this.xPosition - 10, this.yPosition - 10, 80, 30);
+	}
+}
+
+function clearMyGameArea() {
+	var width = myGameArea.width;
+	var height = myGameArea.height;
+	var xoffset = 0;
+	var yoffset = 0;
+
+	ctx.clearRect(xoffset, yoffset, width, height);
+}
+
+function doKeyDown(e) {
+	const speed = 10;
+	if (e.keyCode == 68) //KEY D 
+	{
+		localPlayer.xPosition += speed;
+		localPlayer.drawPlayer();
+	}
+	if (e.keyCode == 65) //KEY A 
+	{
+		localPlayer.xPosition -= speed;
+		localPlayer.drawPlayer();
+	}
+	if (e.keyCode == 83) //KEY S 
+	{
+		localPlayer.yPosition += speed;
+		localPlayer.drawPlayer();
+	}
+	if (e.keyCode == 87) //KEY W 
+	{
+		localPlayer.yPosition -= speed;
+		localPlayer.drawPlayer();
+	}
+
+}
+
+
 //
 // //creates new player
 // function CreateNewPlayerx() {
