@@ -7,11 +7,22 @@ var localPlayer;
 var socket = io.connect('/');
 var playerWidth = 10;
 var playerHeight = 10;
-var myGameArea;
+var Game = { };
+
 
 $(document).ready(function () {
 	startGame();
 });
+
+Game.fps = 50;
+
+Game.run = function() {
+   clearMyGameArea();
+   localPlayer.drawPlayer();
+};
+
+// Start the game loop
+Game._intervalId = setInterval(Game.run, 1000 / Game.fps);
 
 
 function startGame() {
@@ -46,10 +57,6 @@ function Player(id, name, color, xPos, yPos) {
 
 	//Local func to draw player on screen
 	this.drawPlayer = function () {
-
-		//Clear area before rendering player
-		clearMyGameArea();
-
 		ctx.fillStyle = this.Color;
 		ctx.fillRect(this.xPosition, this.yPosition, 30, 30);
 		ctx.font = "20px Arial";
@@ -72,22 +79,18 @@ function doKeyDown(e) {
 	if (e.keyCode == 68) //KEY D 
 	{
 		localPlayer.xPosition += speed;
-		localPlayer.drawPlayer();
 	}
 	if (e.keyCode == 65) //KEY A 
 	{
 		localPlayer.xPosition -= speed;
-		localPlayer.drawPlayer();
 	}
 	if (e.keyCode == 83) //KEY S 
 	{
 		localPlayer.yPosition += speed;
-		localPlayer.drawPlayer();
 	}
 	if (e.keyCode == 87) //KEY W 
 	{
 		localPlayer.yPosition -= speed;
-		localPlayer.drawPlayer();
 	}
 
 }
