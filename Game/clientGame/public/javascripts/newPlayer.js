@@ -34,6 +34,7 @@ function setColor(click){
     var y = document.getElementById(click.id);
     var color = colors.colors[click.id];
     x.append(color.name);
+    $('input[name ="color"]').val(color.hex);
 
     $('#selectedColor').css('color', color.hex);
 
