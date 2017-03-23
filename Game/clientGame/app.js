@@ -27,14 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//CSRF
-app.use(csrf());
-app.use(function(req, res, next){
-  res.cookie('XSRF-TOKEN', req.csrfToken());
-  res.locals.csrftoken = req.csrfToken();
-  next();
-})
-app.use(app.router);
+
+app.use('/', index);
+app.use('/game', game);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,8 +38,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.use('/', index);
-app.use('/game', game);
 
 
 // error handler
