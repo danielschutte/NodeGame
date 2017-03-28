@@ -4,6 +4,31 @@
 
 var socketio = require('socket.io');
 var SOCKET_LIST = {};
+var PLAYER_LIST ={};
+var Player = function (id) {
+    var self = {
+        x:20,
+        y:20,
+        id:id,
+        number:""+Math.floor(10*Math.random()),
+        pressingRight:false,
+        pressingLeft:false,
+        pressingUp:false,
+        pressingDown:false,
+        maxSpeed:10,
+    }
+    self.UpdatePosition = function () {
+        if(self.pressingRight)
+            self.x +=self.maxSpeed;
+        if(self.pressingLeft)
+            self.x -= self.maxSpeed;
+        if(self.pressingUp)
+            self.y -= self.maxSpeed;
+        if(self.pressingDown)
+            self.y += self.maxSpeed;
+}
+    return self;
+}
 var app = require('../routes/game').app;
 var logic = require('./logic');
 
@@ -15,23 +40,30 @@ module.exports.listen = function(server){
     io.sockets.on('connection', function(socket){
 
         socket.id = Math.random();
-        socket.x = 0;
-        socket.y = 0;
         SOCKET_LIST[socket.id] = socket;
-        console.log('test works'+socket.id);
+
+        var player = Player(socket.id);
+        PLAYER_LIST[socket.id] = player;
+
+        console.log('Connected: player'+socket.id);
+        socket.on('disconnect',function () {
+            console.log('Disconnected: player'+socket.id);
+            delete SOCKET_LIST[socket.id];
+            delete PLAYER_LIST[socket.id];
+        });
     });
 
     return io;
 };
 setInterval(function () {
     var pack =[];
-    for(var i in SOCKET_LIST) {
-        var socket = SOCKET_LIST[i];
-        socket.x++;
-        socket.y++;
+    for(var i in PLAYER_LIST) {
+        var player = PLAYER_LIST[i];
+        player.UpdatePosition();
         pack.push({
-            x: socket.x,
-            y: socket.y
+            x: player.x,
+            y: player.y,
+            number:player.number
         });
     }
     for(var i in SOCKET_LIST) {

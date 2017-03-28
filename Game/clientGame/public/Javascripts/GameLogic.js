@@ -35,9 +35,16 @@ myGameArea.color = "#FF0000";
 socket.on('newPositions',function (data) {
     myGameArea.clearRect(0,0,500,500) //check
     for(var i = 0;i < data.length; i++)
-    myGameArea.fillText('P',data[i].x,data[i].y);
+    myGameArea.fillText(data[i].number,data[i].x,data[i].y);
 });
  }
+
+ document.onkeydown = function (event) {
+     if(event.keyCode ===68) //d
+         socket.emit('keyPress',{inputId:'right',state:true});
+ }
+
+
 // var ctx;
 
 // var playerWidth = 10;
