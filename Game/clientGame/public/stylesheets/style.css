@@ -193,7 +193,7 @@ label {
 }
 
 .colorDropDown {
-	position: fixed;
+	position: absolute;
 	width: 252px;
 	height: 35px;
 	margin-top: -12px;
@@ -219,7 +219,7 @@ label {
 }
 
 .colorDropDown{
-  position: fixed;
+  position: absolute;
   width: 252px;
   height: 35px;
   margin-top: -12px;

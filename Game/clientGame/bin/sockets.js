@@ -5,11 +5,13 @@
 var socketio = require('socket.io');
 var SOCKET_LIST = {};
 var PLAYER_LIST ={};
-var Player = function (id) {
+var Player = function (id, name, color) {
     var self = {
         x:20,
         y:20,
         id:id,
+        name:name,
+        color:color,
         number:""+Math.floor(10*Math.random()),
         pressingRight:false,
         pressingLeft:false,
@@ -38,7 +40,7 @@ module.exports.listen = function(server){
     io = socketio.listen(server);
     io.sockets.on('connection', function(socket){
 
-        socket.id = Math.random();
+        socket.id = Math.floor((Math.random() * 999999) + 100000);
         SOCKET_LIST[socket.id] = socket;
 
 
@@ -65,6 +67,11 @@ module.exports.listen = function(server){
 
         socket.on('data', function(data) {
             console.log("data: name: " + data.playerName + ", color: " + data.playerColor);
+
+            var player = Player(socket.id, data.playerName, data.playerColor);
+            console.log("PLAYER: " + player.name + ", " + player.color + ", " + player.id);
+            PLAYER_LIST[socket.id] = player;
+
         });
 
     });
