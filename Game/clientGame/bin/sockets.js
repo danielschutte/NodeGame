@@ -32,7 +32,6 @@ var Player = function (id) {
 var app = require('../routes/game').app;
 var logic = require('./logic');
 
-
 // all socket server side logic will take place here
 module.exports.listen = function(server){
 
@@ -41,6 +40,7 @@ module.exports.listen = function(server){
 
         socket.id = Math.random();
         SOCKET_LIST[socket.id] = socket;
+
 
         var player = Player(socket.id);
         PLAYER_LIST[socket.id] = player;
@@ -51,9 +51,18 @@ module.exports.listen = function(server){
             delete SOCKET_LIST[socket.id];
             delete PLAYER_LIST[socket.id];
         });
+
+        socket.on('data', function(data) {
+            console.log("data: name: " + data.playerName + ", color: " + data.playerColor);
+        });
+
     });
 
     return io;
+
+
+
+
 };
 setInterval(function () {
     var pack =[];
@@ -71,4 +80,5 @@ setInterval(function () {
         socket.emit('newPositions',pack);
     }
 },1000/25);
+
 
