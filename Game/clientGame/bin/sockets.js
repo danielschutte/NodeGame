@@ -12,9 +12,7 @@ module.exports.listen = function(server){
     io = socketio.listen(server);
 
     //var players = [];
-    var game = io
-    .of('/Game')
-    .on('connection', function(socket) {
+    io.on('connection', function(socket) {
         console.log('Player connected');
        socket.on('disconnect', function(){
     console.log('user disconnected');
