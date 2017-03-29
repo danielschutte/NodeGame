@@ -71,10 +71,11 @@ module.exports.listen = function(server){
             var player = Player(socket.id, data.playerName, data.playerColor);
             console.log("PLAYER: " + player.name + ", " + player.color + ", " + player.id);
             PLAYER_LIST[socket.id] = player;
+
         }); });
     return io;
-
 };
+
 setInterval(function () {
     var pack =[];
     for(var i in PLAYER_LIST) {
