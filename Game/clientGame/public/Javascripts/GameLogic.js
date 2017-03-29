@@ -17,10 +17,8 @@ var myGameArea;
      socket.on('newPositions', function (data) {
          clearMyGameArea();
          for (var i = 0; i < data.player.length; i++) {
-             myGameArea.fillStyle = data.player[i].color;
-             myGameArea.fillText(data.player[i].number, data.player[i].x, data.player[i].y);
-             // v = new PlayerCreate(data[i].number, "naam", "#521", data[i].x, data[i].y)
-             // v.drawPlayer();
+             v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y)
+             v.drawPlayer();
          }
          for (var i = 0; i < data.bullet.length; i++)
              myGameArea.fillRect(data.bullet[i].x - 5, data.bullet[i].y - 5, 3, 3);
