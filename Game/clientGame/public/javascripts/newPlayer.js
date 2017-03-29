@@ -47,24 +47,8 @@ function setColor(click){
 }
 
 $('#continueButton').on('click', function(event){
-    event.preventDefault();
     socket.emit('data',  {
         playerName: $('#pn').val(),
         playerColor: $('#pc').val()
     });
-    location.href = "./GameField/";
 });
-
-socket.on('callback', function(data){
-    console.log("goed gedaan daniel");
-});
-
-
-function Continue(click){
-
-
-
-    location.href = "./GameField/";
-
-
-}
