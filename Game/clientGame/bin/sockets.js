@@ -63,20 +63,20 @@ var Player = function (id, name, color) {
     return self;
 }
 Player.list = {};
-var name;
-var color;
+// var name;
+// var color;
 Player.onConnect = function (socket) {
 
-    socket.on('data', function(data) {
+    // socket.on('data', function(data) {
+    //
+    //     name = data.playerName;
+    //     color = data.playerColor;
+    //     console.log("werkt"+ color);
+    //
+    // });
+   // console.log('Connected: player'+socket.id+" kleur:"+color);
 
-        name = data.playerName;
-        color = data.playerColor;
-        console.log("werkt"+ color);
-
-    });
-    console.log('Connected: player'+socket.id+" kleur:"+color);
-
-    var player = Player(socket.id,name,color);
+    var player = Player(socket.id,global.playerName,global.playerColor);
 
     socket.on('keyPress',function (data) {
         if(data.inputId === 'left') //d

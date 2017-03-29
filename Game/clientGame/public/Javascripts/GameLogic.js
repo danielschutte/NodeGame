@@ -4,9 +4,9 @@
  */
 
  $(document).ready(function(){startGame();});
-
+var myGameArea;
  function startGame() {
-     var myGameArea = document.getElementById("gameview").getContext("2d");
+      myGameArea = document.getElementById("gameview").getContext("2d");
      var socket = io.connect('/');
 
      myGameArea.height = window.innerHeight;

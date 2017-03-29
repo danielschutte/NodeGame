@@ -31,6 +31,8 @@ router.post('/newPlayer', function(req, res, next) {
      }
      else
      {
+         global.playerName = playerName;
+         global.playerColor = playerColor;
          //app.locals.player = logic.createPlayerByName(req.body.playerName, req.body.playerColor);
          res.render('gameField', { title: 'Game' ,customJs:'/Javascripts/GameLogic.js', playerName: playerName, playerColor: playerColor});
      }
