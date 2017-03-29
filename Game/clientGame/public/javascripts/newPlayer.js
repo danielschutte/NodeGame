@@ -10,6 +10,10 @@ var colors = {"colors" : [
     {"id" : 4,"name":"pink", "hex":"#ff00ce"}
 ]};
 
+var test1 = null;
+var test2 = null;
+
+//var socket = io.connect('/');
 
 (function(){
     $.each(colors.colors, function(i, item){
@@ -17,16 +21,10 @@ var colors = {"colors" : [
     });
 }());
 
-
-
-
-
 function dropDown(click){
     var x = document.getElementById("dropDown");
     x.classList.toggle("change");
 }
-
-
 
 function setColor(click){
     var x = document.getElementById("selectedColor");
@@ -42,6 +40,9 @@ function setColor(click){
 
 }
 
-function Continue(click){
-    location.href = "./GameField/";
-}
+$('#continueButton').on('click', function(event){
+    socket.emit('data',  {
+        playerName: $('#pn').val(),
+        playerColor: $('#pc').val()
+    });
+});

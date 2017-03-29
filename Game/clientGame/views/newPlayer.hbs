@@ -2,11 +2,11 @@
     <h1 class="newPlayerTitle">{{title}}</h1>
 
 
-<form action="./newPlayer" method="POST">
+    <form method="POST" action="./NewPlayer">
     <table class="playerOptionsTable">
         <tr>
             <td>Name:</td>
-            <td><input name="playerName" type="text" class="newPlayerNameInput"></td>
+            <td><input id="pn" name="playerName" type="text" class="newPlayerNameInput"></td>
 
         </tr>
         <tr>
@@ -16,7 +16,7 @@
 
                     <div class="colorDropDown">
                         <p id="selectedColor" class="selectedColor"></p>
-                        <input name="playerColor" type="hidden" value="">
+                        <input id="pc" name="playerColor" type="hidden" value="">
                         <div id="listArrow" class="listArrow" onclick="dropDown(this)">
                             <div class="line1"></div>
                             <div class="line2"></div>
@@ -37,5 +37,5 @@
             <td><input type="submit" class="startButton" id="continueButton" value="Continue"></td>
         </tr>
     </table>
-</form>
+    </form>
 </div>

@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-      <script>
-          var socket = io();
-          
-      </script>
-      {{#if socket}}
+    {{#if socket}}
         <script src="{{socket}}"></script>
       {{/if}}
-
-      {{#if customJs}}
-      {{/if}}
+      <script>
+          var socket = io();
+      </script>
+      
   </head>
   <body>
   <div class="container">
@@ -41,5 +39,7 @@
   </div> <!-- /container -->
   </body>
   <script src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
-    <script src="{{customJs}}"></script>
+  {{#if customJs}}
+      <script src="{{customJs}}"></script>
+    {{/if}}
 </html>
