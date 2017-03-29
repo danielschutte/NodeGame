@@ -3,6 +3,34 @@
  */
 
 var socketio = require('socket.io');
+var SOCKET_LIST = {};
+var PLAYER_LIST ={};
+var Player = function (id, name, color) {
+    var self = {
+        x:20,
+        y:20,
+        id:id,
+        name:name,
+        color:color,
+        number:""+Math.floor(10*Math.random()),
+        pressingRight:false,
+        pressingLeft:false,
+        pressingUp:false,
+        pressingDown:false,
+        maxSpeed:10,
+    }
+    self.updatePosition = function () {
+        if(self.pressingRight)
+            self.x +=self.maxSpeed;
+        if(self.pressingLeft)
+            self.x -= self.maxSpeed;
+        if(self.pressingUp)
+            self.y -= self.maxSpeed;
+        if(self.pressingDown)
+            self.y += self.maxSpeed;
+}
+    return self;
+}
 var app = require('../routes/game').app;
 var logic = require('./logic');
 
@@ -10,16 +38,65 @@ var logic = require('./logic');
 module.exports.listen = function(server){
 
     io = socketio.listen(server);
+    io.sockets.on('connection', function(socket){
 
-    //var players = [];
-    io.on('connection', function(socket) {
-        console.log('het werkt ');
-        // if(app.locals.player){
-        //     var player = app.locals.player;
-        //     app.locals.player = null;
-        //     players.add(player);
-        //     console.log(players);
-        // }
+        socket.id = Math.floor((Math.random() * 999999) + 100000);
+        SOCKET_LIST[socket.id] = socket;
+
+
+        var player = Player(socket.id);
+        PLAYER_LIST[socket.id] = player;
+
+        console.log('Connected: player'+socket.id);
+        socket.on('disconnect',function () {
+            console.log('Disconnected: player'+socket.id);
+            delete SOCKET_LIST[socket.id];
+            delete PLAYER_LIST[socket.id];
+        });
+
+        socket.on('keyPress',function (data) {
+            if(data.inputId === 'left') //d
+                player.pressingLeft = data.state;
+            else  if(data.inputId === 'right') //s
+                player.pressingRight = data.state;
+            else  if(data.inputId === 'up') //a
+                player.pressingUp = data.state;
+            else  if(data.inputId === 'down') //w
+                player.pressingDown = data.state;
+        });
+
+        socket.on('data', function(data) {
+            console.log("data: name: " + data.playerName + ", color: " + data.playerColor);
+
+            var player = Player(socket.id, data.playerName, data.playerColor);
+            console.log("PLAYER: " + player.name + ", " + player.color + ", " + player.id);
+            PLAYER_LIST[socket.id] = player;
+
+        });
+
     });
+
     return io;
+
+
+
+
 };
+setInterval(function () {
+    var pack =[];
+    for(var i in PLAYER_LIST) {
+        var player = PLAYER_LIST[i];
+        player.updatePosition();
+        pack.push({
+            x: player.x,
+            y: player.y,
+            number:player.number
+        });
+    }
+    for(var i in SOCKET_LIST) {
+        var socket = SOCKET_LIST[i];
+        socket.emit('newPositions',pack);
+    }
+},1000/25);
+
+
