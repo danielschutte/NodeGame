@@ -69,7 +69,18 @@ var myGameArea;
 				inputId: 'up',
 				state: false
 			});
+
 	}
+
+     var myAudio = document.getElementById('soundtrack');
+     myAudio.addEventListener('timeupdate', function() {
+         var buffer = .35;
+         if(this.currentTime > this.duration - buffer){
+             this.currentTime = 0;
+             this.play();}
+
+     }, false);
+     myAudio.play();
 }
 
 function clearMyGameArea() {
