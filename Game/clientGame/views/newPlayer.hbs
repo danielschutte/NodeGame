@@ -2,6 +2,7 @@
     <h1 class="newPlayerTitle">{{title}}</h1>
 
 
+    <form method="POST" action="./NewPlayer">
     <table class="playerOptionsTable">
         <tr>
             <td>Name:</td>
@@ -33,7 +34,8 @@
                 <p class="error">{{this.msg}}</p>
             {{/each}}
         {{/if}}</td>
-            <td><input type="button" class="startButton" id="continueButton" value="Continue"></td>
+            <td><input type="submit" class="startButton" id="continueButton" value="Continue"></td>
         </tr>
     </table>
+    </form>
 </div>
