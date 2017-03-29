@@ -184,7 +184,6 @@ module.exports.listen = function(server){
     });
     return io;
 };
-
 setInterval(function () {
     var pack = {
         player:Player.update(),
