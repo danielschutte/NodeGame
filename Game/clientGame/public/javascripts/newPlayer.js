@@ -13,7 +13,7 @@ var colors = {"colors" : [
 var test1 = null;
 var test2 = null;
 
-var socket = io.connect('/');
+//var socket = io.connect('/');
 
 (function(){
     $.each(colors.colors, function(i, item){
@@ -21,16 +21,10 @@ var socket = io.connect('/');
     });
 }());
 
-
-
-
-
 function dropDown(click){
     var x = document.getElementById("dropDown");
     x.classList.toggle("change");
 }
-
-
 
 function setColor(click){
     var x = document.getElementById("selectedColor");

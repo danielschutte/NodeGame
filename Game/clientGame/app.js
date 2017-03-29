@@ -40,10 +40,6 @@ app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 
-app.post('/', function(request, response){
-    console.log("request: " + request.body);
-});
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
