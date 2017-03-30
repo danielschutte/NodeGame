@@ -5,7 +5,8 @@ var router = express.Router();
 
 // New player
 router.get('/newPlayer', function(req, res, next) {
-    res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/newPlayer.js'});
+    res.render('newPlayer', {title: 'Create a new player', 
+     customJs: '/Javascripts/newPlayer.js'});
 });
 
 // Player has to choose a username and a color, when failed redirect back to newplayer
@@ -22,14 +23,19 @@ router.post('/newPlayer', function(req, res, next) {
     var errors = req.validationErrors();
 
      if(errors){
-       res.render('newPlayer', {title: 'Create a new player', customJs: '/Javascripts/newPlayer.js', errors:errors});
+         // Route back to new player
+       res.render('newPlayer', {title: 'Create a new player',
+        customJs: '/Javascripts/newPlayer.js',
+         errors:errors});
      }
      else
      {
-         global.playerName = plarName;
+         // Route to game
+         global.playerName = playerName;
          global.playerColor = playerColor;
-         //app.locals.player = logic.createPlayerByName(req.body.playerName, req.body.playerColor);
-         res.render('gameField', { title: 'Game' ,customJs:'/Javascripts/GameLogic.js',socket: "https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"});
+         res.render('gameField', { title: 'Game',
+          customJs:'/Javascripts/GameLogic.js',
+           socket: "https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"});
      }
 });
 

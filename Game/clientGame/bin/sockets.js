@@ -172,15 +172,8 @@ module.exports.listen = function(server){
         socket.id = Math.floor((Math.random() * 999999) + 100000);
         SOCKET_LIST[socket.id] = socket;
 
-<<<<<<< HEAD
-        var player = Player(socket.id);
-        PLAYER_LIST[socket.id] = player;
-
-        console.log('Connected: player'+socket.id);
-=======
         Player.onConnect(socket);
 
->>>>>>> origin/master
         socket.on('disconnect',function () {
             delete SOCKET_LIST[socket.id];
             Player.onDisconnect(socket);
