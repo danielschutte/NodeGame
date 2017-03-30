@@ -11,9 +11,14 @@ router.get('/newPlayer', function(req, res, next) {
 
 // Player has to choose a username and a color, when failed redirect back to newplayer
 router.post('/newPlayer', function(req, res, next) {
+    var submit;
+    var playerName;
+    var playerColor 
+
     // get data from fields
-    var playerName = req.body.playerName;
-    var playerColor = req.body.playerColor;
+    playerName = req.body.playerName;
+    playerColor = req.body.playerColor;
+    submit = req.body.submit;
 
     // check the data
     req.checkBody('playerName', 'Fill in a name!').notEmpty();
@@ -24,18 +29,25 @@ router.post('/newPlayer', function(req, res, next) {
 
      if(errors){
          // Route back to new player
-       res.render('newPlayer', {title: 'Create a new player',
-        customJs: '/Javascripts/newPlayer.js',
-         errors:errors});
+       res.render('newPlayer', {
+            title: 'Create a new player',
+            customJs: '/Javascripts/newPlayer.js',
+            errors:errors,
+            name: playerName,
+            color: playerColor,
+            submit: submit
+        });
      }
      else
      {
-         // Route to game
-         global.playerName = playerName;
-         global.playerColor = playerColor;
-         res.render('gameField', { title: 'Game',
-          customJs:'/Javascripts/GameLogic.js',
-           socket: "https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"});
+        // Route to game
+        global.playerName = playerName;
+        global.playerColor = playerColor.hex;
+        res.render('gameField', { 
+            title: 'Game',
+            customJs:'/Javascripts/GameLogic.js',
+            socket: "https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"
+        });
      }
 });
 

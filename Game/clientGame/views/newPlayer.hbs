@@ -6,8 +6,11 @@
     <table class="playerOptionsTable">
         <tr>
             <td>Name:</td>
-            <td><input id="pn" name="playerName" type="text" class="newPlayerNameInput"></td>
-
+            <td><input id="pn" name="playerName" type="text" class="newPlayerNameInput" 
+            {{#if submit}}
+            value="{{name}}"            
+            {{/if}}>
+             </td>
         </tr>
         <tr>
             <td>Color:</td>
@@ -15,7 +18,11 @@
                 <div id="dropDown" class="dropDownContainer">
 
                     <div class="colorDropDown">
-                        <p id="selectedColor" class="selectedColor"></p>
+                        <p id="selectedColor" class="selectedColor" >
+                        {{#if submit}}
+                            {{color.name}}          
+                        {{/if}}>
+                        </p>
                         <input id="pc" name="playerColor" type="hidden" value="">
                         <div id="listArrow" class="listArrow" onclick="dropDown(this)">
                             <div class="line1"></div>
@@ -34,7 +41,7 @@
                 <p class="error">{{this.msg}}</p>
             {{/each}}
         {{/if}}</td>
-            <td><input type="submit" class="startButton" id="continueButton" value="Continue"></td>
+            <td><input type="submit" class="startButton" id="continueButton" name="submit" value="true"></td>
         </tr>
     </table>
     </form>
