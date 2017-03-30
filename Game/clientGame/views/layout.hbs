@@ -4,9 +4,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-      {{#if customJs}}
-      {{/if}}
+    {{#if socket}}
+      <script src="{{socket}}"></script>
+    {{/if}}
   </head>
   <body>
   <div class="container">
@@ -40,5 +40,7 @@
   </div> <!-- /container -->
   </body>
   <script src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
+  {{#if customJs}}
     <script src="{{customJs}}"></script>
+    {{/if}}
 </html>

@@ -46,9 +46,4 @@ function setColor(click){
 
 }
 
-// $('#continueButton').on('click', function(event){
-//     socket.emit('data',  {
-//         playerName: $('#pn').val(),
-//         playerColor: $('#pc').val()
-//     });
-// });
+
