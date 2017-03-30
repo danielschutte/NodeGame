@@ -4,9 +4,9 @@ var logic = require('../bin/logic');
 var router = express.Router();
 
 /* GET users listing. */
-// router.get('/GameField', function(req, res, next) {
-//     res.render('GameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
-// });
+router.get('/GameField', function(req, res, next) {
+    res.render('GameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
+});
 
 // New player
 router.get('/newPlayer', function(req, res, next) {
@@ -31,7 +31,14 @@ router.post('/newPlayer', function(req, res, next) {
      }
      else
      {
+<<<<<<< HEAD
          res.render('gameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js', socket: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js'});
+=======
+         global.playerName = playerName;
+         global.playerColor = playerColor;
+         //app.locals.player = logic.createPlayerByName(req.body.playerName, req.body.playerColor);
+         res.render('gameField', { title: 'Game' ,customJs:'/Javascripts/GameLogic.js',socket: "https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"});
+>>>>>>> origin/master
      }
 });
 

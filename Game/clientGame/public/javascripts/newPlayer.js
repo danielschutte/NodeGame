@@ -13,8 +13,6 @@ var colors = {"colors" : [
 var test1 = null;
 var test2 = null;
 
-//var socket = io.connect('/');
-
 (function(){
     $.each(colors.colors, function(i, item){
         $('#colorList').append('<li id='+item.id+' style="color:'+item.hex+'" onclick="setColor(this)">'+item.name+'</li>');
@@ -40,9 +38,4 @@ function setColor(click){
 
 }
 
-$('#continueButton').on('click', function(event){
-    socket.emit('data',  {
-        playerName: $('#pn').val(),
-        playerColor: $('#pc').val()
-    });
-});
+
