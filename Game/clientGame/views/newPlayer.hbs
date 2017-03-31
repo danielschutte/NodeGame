@@ -14,7 +14,6 @@
                 <td>Color:</td>
                 <td>
                     <div id="dropDown" class="dropDownContainer">
-
                         <div class="colorDropDown">
                             <p id="selectedColor" class="selectedColor" style="color: {{colorHex}};">{{colorName}}</p>
                             <input id="pc" name="playerColorName" type="hidden" value="{{colorName}}">
@@ -27,18 +26,18 @@
                             </ul>
                         </div>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>{{#if errors}}
-                {{#each errors}}
-                    <p class="error">{{this.msg}}</p>
-                {{/each}}
-            {{/if}}</td>
-                <td><button type="button" class="startButton" id="continueButton">Continue</button></td>
-
-            </tr>
-        </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>{{#if errors}}
+            {{#each errors}}
+                <p class="error">{{this.msg}}</p>
+            {{/each}}
+        {{/if}}</td>
+            <td><button type="button" class="startButton" id="continueButton">Continue</button></td>
+        </tr>
+    </table>  
     </form>
 </div>
 
