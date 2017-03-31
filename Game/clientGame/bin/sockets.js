@@ -1,7 +1,6 @@
 /**
  * Created by lenardborn on 16/03/2017.
  */
-
 var socketio = require('socket.io');
 var SOCKET_LIST = {};
 
@@ -212,13 +211,13 @@ var logic = require('./logic');
 module.exports.listen = function(server){
 
     io = socketio.listen(server);
-    io.sockets.on('connection', function(socket){
+    io.on('connection', function(socket){
 
         socket.id = Math.floor((Math.random() * 999999) + 100000);
         SOCKET_LIST[socket.id] = socket;
 
         Player.onConnect(socket);
-
+        
         socket.on('disconnect',function () {
             delete SOCKET_LIST[socket.id];
             Player.onDisconnect(socket);
