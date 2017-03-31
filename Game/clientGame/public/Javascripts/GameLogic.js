@@ -103,18 +103,13 @@ function startGame() {
 			curY: y
 		});
 	}
-
-
-	var myAudio = document.getElementById('soundtrack');
-	myAudio.volume = 0.0;
-
-	myAudio.addEventListener('timeupdate', function () {
-		var buffer = .35;
-		if (this.currentTime > this.duration - buffer) {
-			this.currentTime = 0;
-			this.play();
-		}
-
+     var myAudio = document.getElementById('soundtrack');
+	myAudio.volume = 0.1;
+     myAudio.addEventListener('timeupdate', function() {
+         var buffer = .35;
+         if(this.currentTime > this.duration - buffer){
+             this.currentTime = 0;
+             this.play();}
 	}, false);
 	myAudio.play();
 }
@@ -163,6 +158,18 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 	}
 
 }
+
+(function(){
+	var sound = $('#click');
+	var form = $('#exitForm');
+
+	$('#exitButton').click(function(){
+		sound[0].play();
+	});
+	sound.on('ended', function(){
+		form.submit();
+	});
+}());
 
 // function drawInfo(score,health) {
 // 	$("")
