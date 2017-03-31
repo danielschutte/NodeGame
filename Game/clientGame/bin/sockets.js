@@ -120,10 +120,11 @@ Player.onConnect = function (socket) {
             player.pressingUp = data.state;
         else  if(data.inputId === 'down') //w
             player.pressingDown = data.state;
-        else if(data.inputId === 'shoot')
-            player.pressingShoot = data.state;
         if (data.inputId === 'shift') {
             player.pressingShift = data.state;
+        }
+        if (data.inputId === 'space') {
+            player.pressingShoot = data.state;
         }
         // else if(data.inputId === 'mouseAngle'){
         //     player.mouseX = data.curX;
@@ -221,13 +222,6 @@ Bullet.update = function(){
 
 }
 
-//     // console.log("data: name: " + data.playerName + ", color: " + data.playerColor);
-//     //
-//     // var player = Player(socket.id, data.playerName, data.playerColor);
-//     // console.log("PLAYER: " + player.name + ", " + player.color + ", " + player.id);
-//     //PLAYER_LIST[socket.id] = player;
-//
-// });
 
 ///////////////////////////////////////////////////////////////////
 var app = require('../routes/game').app;

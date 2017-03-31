@@ -58,6 +58,11 @@ function startGame() {
 				inputId: 'shift',
 				state: true
 			});
+        if (event.keyCode === 32)
+            socket.emit('keyPress', {
+                inputId: 'space',
+                state: true
+            });
 	}
 
 	document.onkeyup = function (event) {
@@ -86,6 +91,11 @@ function startGame() {
 				inputId: 'shift',
 				state: false
 			});
+        if (event.keyCode === 32)
+            socket.emit('keyPress', {
+                inputId: 'space',
+                state: false
+            });
 
 	}
 
