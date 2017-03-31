@@ -17,10 +17,9 @@ var test2 = null;
     $.each(colors.colors, function(i, item){
         $('#colorList').append('<li id='+item.id+' style="color:'+item.hex+'" onclick="setColor(this)">'+item.name+'</li>');
     });
-
     $('input[name ="playerColor"]').val(null);
-
-}());
+}()
+);
 
 function dropDown(click){
     var x = document.getElementById("dropDown");
@@ -33,7 +32,9 @@ function setColor(click){
     var y = document.getElementById(click.id);
     var color = colors.colors[click.id];
     x.append(color.name);
-    $('input[name ="playerColor"]').val(color);
+    
+    $('input[name ="playerColorName"]').val(color.name);
+    $('input[name ="playerColorHex"]').val(color.hex);
 
     $('#selectedColor').css('color', color.hex);
 

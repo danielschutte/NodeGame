@@ -173,7 +173,7 @@ module.exports.listen = function(server){
         SOCKET_LIST[socket.id] = socket;
 
         Player.onConnect(socket);
-
+        
         socket.on('disconnect',function () {
             delete SOCKET_LIST[socket.id];
             Player.onDisconnect(socket);

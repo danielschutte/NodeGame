@@ -11,18 +11,18 @@ router.get('/newPlayer', function(req, res, next) {
 
 // Player has to choose a username and a color, when failed redirect back to newplayer
 router.post('/newPlayer', function(req, res, next) {
-    var submit;
     var playerName;
-    var playerColor 
+    var playerColorName;
+    var playerColorHex;
 
     // get data from fields
     playerName = req.body.playerName;
-    playerColor = req.body.playerColor;
-    submit = req.body.submit;
+    playerColorName = req.body.playerColorName;
+    playerColorHex = req.body.playerColorHex;
 
     // check the data
     req.checkBody('playerName', 'Fill in a name!').notEmpty();
-    req.checkBody('playerColor', 'Pick a color!').notEmpty();
+    req.checkBody('playerColorHex', 'Pick a color!').notEmpty();
 
     // collect errors
     var errors = req.validationErrors();
@@ -34,15 +34,15 @@ router.post('/newPlayer', function(req, res, next) {
             customJs: '/Javascripts/newPlayer.js',
             errors:errors,
             name: playerName,
-            color: playerColor,
-            submit: submit
+            colorName: playerColorName,
+            colorHex: playerColorHex
         });
      }
      else
      {
         // Route to game
         global.playerName = playerName;
-        global.playerColor = playerColor.hex;
+        global.playerColor = playerColorHex;
         res.render('gameField', { 
             title: 'Game',
             customJs:'/Javascripts/GameLogic.js',
