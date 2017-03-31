@@ -17,7 +17,7 @@ function startGame() {
      socket.on('newPositions', function (data) {
          clearMyGameArea();
          for (var i = 0; i < data.player.length; i++) {
-             v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y);
+             v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y, data.player[i].mouseAngle);
              v.drawPlayer();
 
 			 if(socket.id == data.player[i].number)
@@ -139,15 +139,48 @@ function clearMyGameArea() {
 }
 
 //New object: Player
-function PlayerCreate(id, name, color, xPos, yPos) {
+function PlayerCreate(id, name, color, xPos, yPos, mouseAngle) {
 	this.id = id;
 	this.name = name;
 	this.Color = color;
 	this.xPosition = xPos;
 	this.yPosition = yPos;
+	this.mouseAngle = mouseAngle;
 
 	//Local func to draw player on screen
 	this.drawPlayer = function () {
+
+
+		var width = 8;
+		var length = 40;
+		var xPadding = 0;
+		var yPadding = 0;
+
+		if(this.mouseAngle == 0){
+			//right
+			this.width = 40;
+			this.length = 8;
+			this.yPadding = 4;
+			this.xPadding = 0;
+		}else if(this.mouseAngle == -180){
+			//left
+			this.width = -40;
+			this.length = 8;
+			this.yPadding = 4;
+			this.xPadding = 0;
+		}else if(this.mouseAngle == 90){
+			//up
+			this.width = 8;
+			this.length = 40;
+			this.yPadding = 0;
+			this.xPadding = 4;
+		}else if(this.mouseAngle == -90){
+			//down
+			this.width = 8;
+			this.length = -40;
+			this.yPadding = 0;
+			this.xPadding = 4;
+		}
 
 		ctx.beginPath();
 		ctx.arc(this.xPosition, this.yPosition, 20, 0, 2 * Math.PI, false);
@@ -162,7 +195,7 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 		//Gun following mouse
 
 		ctx.fillStyle = this.Color;
-		ctx.fillRect(this.xPosition - 4, this.yPosition, 8, 40);
+		ctx.fillRect(this.xPosition - this.xPadding, this.yPosition - this.yPadding, this.width, this.length);
 
 		// myGameArea.fillStyle = this.Color;
 		// myGameArea.fillRect(this.xPosition, this.yPosition, 30, 30);

@@ -148,7 +148,8 @@ Player.update = function () {
             color: player.color,
             name: player.name,
             score: player.score,
-            health: player.health
+            health: player.health,
+            mouseAngle: player.mouseAngle
 
         });
     }
