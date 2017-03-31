@@ -48,6 +48,11 @@ function startGame() {
 				inputId: 'up',
 				state: true
 			});
+		if (event.keyCode === 16)
+			socket.emit('keyPress', {
+				inputId: 'shift',
+				state: true
+			});
 	}
 
 	document.onkeyup = function (event) {
@@ -69,6 +74,11 @@ function startGame() {
 		else if (event.keyCode === 87) //w
 			socket.emit('keyPress', {
 				inputId: 'up',
+				state: false
+			});
+		if (event.keyCode === 16)
+			socket.emit('keyPress', {
+				inputId: 'shift',
 				state: false
 			});
 
@@ -103,13 +113,14 @@ function startGame() {
 			curY: y
 		});
 	}
-     var myAudio = document.getElementById('soundtrack');
+	var myAudio = document.getElementById('soundtrack');
 	myAudio.volume = 0.1;
-     myAudio.addEventListener('timeupdate', function() {
-         var buffer = .35;
-         if(this.currentTime > this.duration - buffer){
-             this.currentTime = 0;
-             this.play();}
+	myAudio.addEventListener('timeupdate', function () {
+		var buffer = .35;
+		if (this.currentTime > this.duration - buffer) {
+			this.currentTime = 0;
+			this.play();
+		}
 	}, false);
 	myAudio.play();
 }
@@ -159,14 +170,14 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 
 }
 
-(function(){
+(function () {
 	var sound = $('#click');
 	var form = $('#exitForm');
 
-	$('#exitButton').click(function(){
+	$('#exitButton').click(function () {
 		sound[0].play();
 	});
-	sound.on('ended', function(){
+	sound.on('ended', function () {
 		form.submit();
 	});
 }());
