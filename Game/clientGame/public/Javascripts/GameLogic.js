@@ -19,7 +19,13 @@ function startGame() {
          for (var i = 0; i < data.player.length; i++) {
              v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y, data.player[i].mouseAngle);
              v.drawPlayer();
+             if(data.player[i].gameover == true && socket.id == data.player[i].number){
+             $("#gameover").text("GAMEOVER! ");
+                 socket.emit('gameover');
+                 $("#restartButton").css({"visibility": "visible"});
 
+                 /// button
+             }
 			 if(socket.id == data.player[i].number)
              drawInfo(data.player[i].score,data.player[i].health);
 
@@ -211,15 +217,23 @@ function drawInfo(score,health) {
 
 
 (function () {
-	var sound = $('#click');
-	var form = $('#exitForm');
+	var sound1 = $('#click');
+
+	var formExit = $('#exitForm');
 
 	$('#exitButton').click(function () {
-		sound[0].play();
+		sound1[0].play();
 	});
-	sound.on('ended', function () {
-		form.submit();
-	});
+
+    sound1.on('ended', function () {
+        formExit.submit();
+    });
+
+	$('#restartButton').click(function (){
+		location.href = '/Game/NewPlayer';
+	})
+
+
 }());
 
 

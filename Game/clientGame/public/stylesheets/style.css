@@ -254,6 +254,13 @@ canvas {
 	background-color: black;
 }
 
+#restartButton {
+	visibility: hidden;
+	margin-right: 80px;
+	width: auto;
+	border-color: deepskyblue;
+	color: deepskyblue;
+}
 .backButton {
 	width: 80px;
 	height: 40px;

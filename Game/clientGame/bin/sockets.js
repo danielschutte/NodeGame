@@ -48,6 +48,7 @@ var Player = function (id, name, color) {
         self.maxSpeed = 2;
         self.health = 10;
         self.timer = 0;
+        self.gameover = false;
         self.coolDownTimer = 0;
         self.score =0;
         var  super_update = self.update;
@@ -126,11 +127,6 @@ Player.onConnect = function (socket) {
         if (data.inputId === 'space') {
             player.pressingShoot = data.state;
         }
-        // else if(data.inputId === 'mouseAngle'){
-        //     player.mouseX = data.curX;
-        //     player.mouseY = data.curY;
-        //
-        // }
 
     });
 }
@@ -151,7 +147,8 @@ Player.update = function () {
             name: player.name,
             score: player.score,
             health: player.health,
-            mouseAngle: player.mouseAngle
+            mouseAngle: player.mouseAngle,
+            gameover: player.gameover
 
         });
     }
@@ -185,6 +182,12 @@ var Bullet = function(parent,angle,color){
                 hit = true;
                 p.health --;
                 self.toRemove = true;
+                if(p.health <= 0)
+                {
+                    p.gameover = true;
+
+
+                }
             }
         }
         for(var i in Player.list)
@@ -244,6 +247,9 @@ module.exports.listen = function (server) {
 			// console.log('Disconnected: player'+socket.id);
 		});
 
+		socket.on('gameover',function () {
+            delete Player.list[socket.id];
+        });
 	});
 	return io;
 };
