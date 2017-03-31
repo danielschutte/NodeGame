@@ -73,6 +73,7 @@ var myGameArea;
 	}
 
      var myAudio = document.getElementById('soundtrack');
+	myAudio.volume = 0.0;
      myAudio.addEventListener('timeupdate', function() {
          var buffer = .35;
          if(this.currentTime > this.duration - buffer){
@@ -102,11 +103,27 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 
 	//Local func to draw player on screen
 	this.drawPlayer = function () {
+
+		myGameArea.beginPath();
+		myGameArea.arc(this.xPosition, this.yPosition, 35, 0, 2 * Math.PI, false);
+		myGameArea.lineWidth = 15;
+		myGameArea.strokeStyle = this.Color;
+		myGameArea.stroke();
+
+        myGameArea.fillStyle = "#ffffff";
+        myGameArea.fillText(this.name, this.xPosition + 50, this.yPosition - 10, 80, 30);
+
+		//Gun following mouse
+
 		myGameArea.fillStyle = this.Color;
-		myGameArea.fillRect(this.xPosition, this.yPosition, 30, 30);
-		myGameArea.font = "20px Arial";
-		myGameArea.fillStyle = "#000";
-		myGameArea.fillText(this.name, this.xPosition - 10, this.yPosition - 10, 80, 30);
+		myGameArea.fillRect(this.xPosition - 7.5, this.yPosition, 15, 70);
+
+
+		// myGameArea.fillStyle = this.Color;
+		// myGameArea.fillRect(this.xPosition, this.yPosition, 30, 30);
+		// myGameArea.font = "20px Arial";
+
 	}
+
 }
 

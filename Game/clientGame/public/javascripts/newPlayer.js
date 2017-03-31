@@ -43,7 +43,6 @@ function setColor(click){
     $('#selectedColor').css('color', color.hex);
 
     dropDown(this);
-
 }
 
 
