@@ -21,11 +21,12 @@ var myGameArea;
              v.drawPlayer();
          }
          for (var i = 0; i < data.bullet.length; i++)
-             myGameArea.fillRect(data.bullet[i].x - 5, data.bullet[i].y - 5, 3, 3);
+             myGameArea.fillRect(data.bullet[i].x , data.bullet[i].y, 5, 5);
      });
 
 
 	document.onkeydown = function (event) {
+
 		if (event.keyCode === 68) //d
 			socket.emit('keyPress', {
 				inputId: 'right',
@@ -70,9 +71,30 @@ var myGameArea;
 				state: false
 			});
 	}
+	
+	document.onmousedown = function (event) {
+		socket.emit('keyPress',{inputId:'shoot',state:true});
+    }
+
+     document.onmouseup = function (event) {
+         socket.emit('keyPress',{inputId:'shoot',state:false});
+     }
+
+     document.onmousemove = function (myGameArea,event) {
+
+		//var rect = myGameArea.getBoundingClientRect();
+       // scaleX = canvas.width / rect.width;
+       // scaleY = canvas.height / rect.height;
+      // var x = (event.clientX -rect.left) *scaleX ;
+       //  var y = (event.clientY- rect.top) *scaleY ;
+		 var x = myGameArea.clientX;
+		 var y = myGameArea.clientY;
+         socket.emit('keyPress',{inputId:'mouseAngle',curX:x,curY:y});
+     }
 }
 
 function clearMyGameArea() {
+
 	var width = myGameArea.width;
 	var height = myGameArea.height;
 	var xoffset = 0;
@@ -98,4 +120,8 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 		myGameArea.fillText(this.name, this.xPosition - 10, this.yPosition - 10, 80, 30);
 	}
 }
+
+// function drawInfo(score,health) {
+// 	$("")
+// }
 
