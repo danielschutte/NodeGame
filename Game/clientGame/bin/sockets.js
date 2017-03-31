@@ -41,6 +41,7 @@ var Player = function (id, name, color) {
         self.pressingUp=false;
         self.pressingDown=false;
         self.pressingShoot = false;
+        self.pressingShift = false;
         self.mouseX = 0;
         self.mouseY = 0;
         self.mouseAngle = 0;
@@ -54,7 +55,7 @@ var Player = function (id, name, color) {
             self.updateSpeed();
             super_update();
             //self.mouseAngle = Math.atan2(self.mouseY - (self.y)  ,  self.mouseX - (self.x)) * 180 / Math.PI;
-            if(self.pressingShoot){
+            if(self.pressingShoot && !self.pressingShift){
                 if(self.timer++ < 1){
                 self.shoot(self.mouseAngle);
                 //console.log("x="+self.mouseX+"  y="+self.mouseY+" player x="+self.x +"  player y="+ self.y);

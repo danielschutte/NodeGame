@@ -103,17 +103,6 @@ function startGame() {
 		});
 	}
 
-     // document.onmousemove = function (myGameArea,event) {
-     //
-		// //var rect = myGameArea.getBoundingClientRect();
-     //   // scaleX = canvas.width / rect.width;
-     //   // scaleY = canvas.height / rect.height;
-     //  // var x = (event.clientX -rect.left) *scaleX ;
-     //   //  var y = (event.clientY- rect.top) *scaleY ;
-		//  var x = myGameArea.clientX;
-		//  var y = myGameArea.clientY;
-     //     socket.emit('keyPress',{inputId:'mouseAngle',curX:x,curY:y});
-     // }
 
 
      var myAudio = document.getElementById('soundtrack');
