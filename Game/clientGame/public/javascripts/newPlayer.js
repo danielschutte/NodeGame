@@ -43,3 +43,20 @@ function setColor(click){
 }
 
 
+(function(){
+
+    var sound = $('#click');
+    var form = $('#playerForm');
+
+    $('#continueButton').click(function(){
+        sound[0].play();
+
+    });
+
+
+    sound.on("ended", function(){
+        form.submit();
+    })
+
+
+}());
