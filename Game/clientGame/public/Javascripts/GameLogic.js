@@ -5,6 +5,7 @@
 
  $(document).ready(function(){startGame();});
 var myGameArea;
+//var bulletColor;
  function startGame() {
       myGameArea = document.getElementById("gameview").getContext("2d");
      var socket = io.connect('/');
@@ -17,11 +18,17 @@ var myGameArea;
      socket.on('newPositions', function (data) {
          clearMyGameArea();
          for (var i = 0; i < data.player.length; i++) {
-             v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y)
+             v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y);
              v.drawPlayer();
+             console.log(data.player[i].id);
+			 if(socket.id == data.player[i].number)
+             drawInfo(data.player[i].score,data.player[i].health);
+
          }
-         for (var i = 0; i < data.bullet.length; i++)
+         for (var i = 0; i < data.bullet.length; i++){
+            myGameArea.fillStyle = data.bullet[i].color;
              myGameArea.fillRect(data.bullet[i].x , data.bullet[i].y, 5, 5);
+         }
      });
 
 
@@ -81,17 +88,17 @@ var myGameArea;
          socket.emit('keyPress',{inputId:'shoot',state:false});
      }
 
-     document.onmousemove = function (myGameArea,event) {
-
-		//var rect = myGameArea.getBoundingClientRect();
-       // scaleX = canvas.width / rect.width;
-       // scaleY = canvas.height / rect.height;
-      // var x = (event.clientX -rect.left) *scaleX ;
-       //  var y = (event.clientY- rect.top) *scaleY ;
-		 var x = myGameArea.clientX;
-		 var y = myGameArea.clientY;
-         socket.emit('keyPress',{inputId:'mouseAngle',curX:x,curY:y});
-     }
+     // document.onmousemove = function (myGameArea,event) {
+     //
+		// //var rect = myGameArea.getBoundingClientRect();
+     //   // scaleX = canvas.width / rect.width;
+     //   // scaleY = canvas.height / rect.height;
+     //  // var x = (event.clientX -rect.left) *scaleX ;
+     //   //  var y = (event.clientY- rect.top) *scaleY ;
+		//  var x = myGameArea.clientX;
+		//  var y = myGameArea.clientY;
+     //     socket.emit('keyPress',{inputId:'mouseAngle',curX:x,curY:y});
+     // }
 
 
      var myAudio = document.getElementById('soundtrack');
@@ -151,7 +158,8 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 
 }
 
-// function drawInfo(score,health) {
-// 	$("")
-// }
+function drawInfo(score,health) {
+	$("#score").text("Score: "+score);
+	$("#health").text("Health: "+health);
+}
 

@@ -44,7 +44,7 @@ var Player = function (id, name, color) {
         self.pressingShoot = false;
         self.mouseX = 0;
         self.mouseY = 0;
-        self.mouseAngle = 90;
+        self.mouseAngle = 0;
         self.maxSpeed = 2;
         self.health = 10;
         self.timer = 0;
@@ -54,12 +54,12 @@ var Player = function (id, name, color) {
         self.update = function () {
             self.updateSpeed();
             super_update();
-            self.mouseAngle = Math.atan2(self.mouseY - (self.y)  ,  self.mouseX - (self.x)) * 180 / Math.PI;
+            //self.mouseAngle = Math.atan2(self.mouseY - (self.y)  ,  self.mouseX - (self.x)) * 180 / Math.PI;
             if(self.pressingShoot){
                 if(self.timer++ < 1){
                 self.shoot(self.mouseAngle);
-                console.log("x="+self.mouseX+"  y="+self.mouseY+" player x="+self.x +"  player y="+ self.y);
-                    console.log(self.mouseAngle);
+                //console.log("x="+self.mouseX+"  y="+self.mouseY+" player x="+self.x +"  player y="+ self.y);
+                   // console.log(self.mouseAngle);
                 } else if(self.coolDownTimer++ > 10){
                     self.timer = 0;
                     self.coolDownTimer = 0;
@@ -68,22 +68,30 @@ var Player = function (id, name, color) {
         }
         
         self.shoot = function (angle) {
-            var bullet = Bullet(self.id,angle);
+            var bullet = Bullet(self.id,angle,self.color);
             bullet.x = self.x;
             bullet.y = self.y;
         }
 
     self.updateSpeed = function () {
-        if(self.pressingRight)
+        if(self.pressingRight){
             self.speedX = self.maxSpeed;
-        else if(self.pressingLeft)
+            self.mouseAngle = 0;
+        }
+        else if(self.pressingLeft) {
             self.speedX = -self.maxSpeed;
+            self.mouseAngle =-180;
+        }
         else
             self.speedX =0;
-        if(self.pressingUp)
+        if(self.pressingUp) {
             self.speedY = -self.maxSpeed;
-        else if(self.pressingDown)
+            self.mouseAngle = -90;
+        }
+        else if(self.pressingDown) {
             self.speedY = self.maxSpeed;
+            self.mouseAngle = 90;
+        }
         else
             self.speedY =0;
     }
@@ -94,7 +102,7 @@ Player.list = {};
 // var name;
 // var color;
 Player.onConnect = function (socket) {
-
+    console.log(socket.id);
     // socket.on('data', function(data) {
     //
     //     name = data.playerName;
@@ -117,11 +125,11 @@ Player.onConnect = function (socket) {
             player.pressingDown = data.state;
         else if(data.inputId === 'shoot')
             player.pressingShoot = data.state;
-        else if(data.inputId === 'mouseAngle'){
-            player.mouseX = data.curX;
-            player.mouseY = data.curY;
-
-        }
+        // else if(data.inputId === 'mouseAngle'){
+        //     player.mouseX = data.curX;
+        //     player.mouseY = data.curY;
+        //
+        // }
 
     });
 }
@@ -137,18 +145,20 @@ Player.update = function () {
         pack.push({
             x: player.x,
             y: player.y,
-            number:player.number,
+            number:player.id,
             color: player.color,
             name: player.name,
             score: player.score,
             health: player.health
+
         });
     }
     return pack;
 }
 //////////////////////////////
 ////////BULLET LOGIC\\\\\\\\\\\\\\\\\\\\\
-var Bullet = function(parent,angle){
+var Bullet = function(parent,angle,color){
+    var hit = false;
     var self = Entity();
     self.id = Math.random();
     self.speedX = Math.cos(angle/180*Math.PI) * 10;
@@ -156,6 +166,7 @@ var Bullet = function(parent,angle){
     self.parent = parent;
     self.timer = 0;
     self.toRemove = false;
+    self.color = color;
     var super_update = self.update;
     self.update = function(){
         if(self.timer++ > 100)
@@ -164,11 +175,22 @@ var Bullet = function(parent,angle){
 
         for(var i in Player.list)
         {
+
             var p = Player.list[i];
             if(self.getDistance(p) <32 && self.parent !== p.id){
                 //handle collision
-                self.parent.score +=1;
+                // parent.score +=1;
+                hit = true;
+                p.health --;
                 self.toRemove = true;
+            }
+        }
+        for(var i in Player.list)
+        {
+            var p = Player.list[i];
+            if(self.parent == p.id && hit == true){
+                p.score ++;
+                hit = false;
             }
 
         }
@@ -190,6 +212,7 @@ Bullet.update = function(){
         pack.push({
             x:bullet.x,
             y:bullet.y,
+            color: bullet.color,
         });
         }
     }
@@ -214,7 +237,7 @@ module.exports.listen = function(server){
     io = socketio.listen(server);
     io.sockets.on('connection', function(socket){
 
-        socket.id = Math.floor((Math.random() * 999999) + 100000);
+       // socket.id = Math.floor((Math.random() * 999999) + 100000);
         SOCKET_LIST[socket.id] = socket;
 
         Player.onConnect(socket);
