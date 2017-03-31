@@ -24,7 +24,7 @@
 
 (function(){
 
-    var sound = $('#explosion');
+    var sound = $('#click');
 
     sound.on("ended", function(){
         location.href = "./Game/NewPlayer";

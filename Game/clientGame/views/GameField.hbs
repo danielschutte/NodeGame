@@ -1,17 +1,17 @@
-
 <div>
-
-    <h3>Score: </h3>
-    <h3>Health: </h3>
-    <input type="button" class="backButton" value="Exit"/>
+     <form id="exitForm" method="get" action="/">
+        <button id="exitButton" type="button" class="backButton" >Exit</button>
+    </form>
 </div>
 
+<h3 id="score">Score: </h3>
+<h3 id="health">Health: </h3>
+<div id="canvasDiv"></div>
 
-<canvas id="gameview">
-    Deze browser ondersteunt HTML canvas niet
-</canvas>
-<p id="messageFromServer"> </p>
-
-<audio id = 'soundtrack'>
+<audio id='soundtrack'>
     <source src="/sounds/soundtrack.mp3"/>
+</audio>
+
+<audio id = 'click'>
+    <source src="/sounds/click.mp3"/>
 </audio>

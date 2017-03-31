@@ -9,16 +9,18 @@
 }
 
 body {
-  padding: 50px;
-  /*font: 14px "FreshBot", Helvetica, Arial, sans-serif;*/
-  background-color: black;
+	padding: 50px;
+	/*font: 14px "FreshBot", Helvetica, Arial, sans-serif;*/
+	background-color: black;
+	margin: 0px;
+	
 }
 
-
-.error{
-  color: red;
-  font-size: 16pt;
+.error {
+	color: red;
+	font-size: 16pt;
 }
+
 
 /*Text style*/
 
@@ -27,6 +29,7 @@ td {
 	font-family: 'FreshBot';
 	font-weight: 200;
 	color: lawngreen;
+	font-size: 20pt;
 }
 
 td {
@@ -40,7 +43,7 @@ h1 {
 	font-size: 28pt;
 }
 
-h3{
+h3 {
 	font-family: 'Chromia';
 	color: lawngreen;
 }
@@ -83,12 +86,11 @@ label {
 	background-color: black;
 }
 
-#continueButton{
-  margin-top: 40px;
-  font-size: 26pt;
-  height: 50px;
-  width: 200px;
-
+#continueButton {
+	margin-top: 40px;
+	font-size: 26pt;
+	height: 50px;
+	width: 200px;
 }
 
 
@@ -194,7 +196,6 @@ label {
 	transition: 0.4s;
 }
 
-
 .change .colorDropDown {
 	height: inherit;
 }
@@ -205,20 +206,20 @@ label {
 }
 
 .selectedColor {
-  margin: 0 0;
-  display: inline-block;
+	margin: 0 0;
+	display: inline-block;
 }
 
-.colorDropDown{
-  position: absolute;
-  width: 252px;
-  height: 35px;
-  margin-top: -12px;
-  background-color: black;
-  border: solid lawngreen 2px;
-  border-radius: 5px;
-  transition: 0.4s;
-  z-index: 10000;
+.colorDropDown {
+	position: absolute;
+	width: 252px;
+	height: 35px;
+	margin-top: -12px;
+	background-color: black;
+	border: solid lawngreen 2px;
+	border-radius: 5px;
+	transition: 0.4s;
+	z-index: 10000;
 }
 
 .change .line1 {
@@ -230,29 +231,13 @@ label {
 }
 
 canvas {
-	padding: 0;
-	margin: auto;
+	width: 60%;
 	display: block;
-	width: 1000px;
-	height: 600px;
-}
-
-@media screen and (max-width: 1100px) {
-
-	canvas{
-		width: 500px;
-		height: 300px;
-	}
-
-}
-
-@media screen and (max-width: 600px){
-
-	canvas{
-		width: 350px;
-		height: 210px;
-	}
-
+	padding: 0px;
+	margin: auto;
+	border: solid lawngreen 2px;
+	border-radius: 10px;
+	background-color: black;
 }
 
 #gameview {
@@ -261,7 +246,7 @@ canvas {
 	background-color: black;
 }
 
-.backButton{
+.backButton {
 	width: 80px;
 	height: 40px;
 	float: right;
@@ -274,4 +259,3 @@ canvas {
 	border-radius: 10px;
 	background-color: black;
 }
-
