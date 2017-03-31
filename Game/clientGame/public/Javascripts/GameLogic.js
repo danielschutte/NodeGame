@@ -1,33 +1,32 @@
-
 /**
  * Created by arjen on 16-3-2017.
  */
+var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 640;
+canvas.height = 360;
 
- $(document).ready(function(){startGame();});
-var myGameArea;
-//var bulletColor;
- function startGame() {
-      myGameArea = document.getElementById("gameview").getContext("2d");
-     var socket = io.connect('/');
+$(document).ready(function () {
+	startGame();
+});
 
-     myGameArea.height = window.innerHeight;
-     myGameArea.width = window.innerWidth;
-     myGameArea.canvas.height = window.innerHeight;
-     myGameArea.canvas.width = window.innerWidth;
 
+function startGame() {
+	$('#canvasDiv').append(canvas);
+    var socket = io.connect('/');
      socket.on('newPositions', function (data) {
          clearMyGameArea();
          for (var i = 0; i < data.player.length; i++) {
              v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y);
              v.drawPlayer();
-             console.log(data.player[i].id);
+
 			 if(socket.id == data.player[i].number)
              drawInfo(data.player[i].score,data.player[i].health);
 
          }
          for (var i = 0; i < data.bullet.length; i++){
-            myGameArea.fillStyle = data.bullet[i].color;
-             myGameArea.fillRect(data.bullet[i].x , data.bullet[i].y, 5, 5);
+             ctx.fillStyle = data.bullet[i].color;
+             ctx.fillRect(data.bullet[i].x , data.bullet[i].y, 5, 5);
          }
      });
 
@@ -54,6 +53,11 @@ var myGameArea;
 				inputId: 'up',
 				state: true
 			});
+		if (event.keyCode === 16)
+			socket.emit('keyPress', {
+				inputId: 'shift',
+				state: true
+			});
 	}
 
 	document.onkeyup = function (event) {
@@ -77,16 +81,27 @@ var myGameArea;
 				inputId: 'up',
 				state: false
 			});
+		if (event.keyCode === 16)
+			socket.emit('keyPress', {
+				inputId: 'shift',
+				state: false
+			});
 
 	}
-	
-	document.onmousedown = function (event) {
-		socket.emit('keyPress',{inputId:'shoot',state:true});
-    }
 
-     document.onmouseup = function (event) {
-         socket.emit('keyPress',{inputId:'shoot',state:false});
-     }
+	document.onmousedown = function (event) {
+		socket.emit('keyPress', {
+			inputId: 'shoot',
+			state: true
+		});
+	}
+
+	document.onmouseup = function (event) {
+		socket.emit('keyPress', {
+			inputId: 'shoot',
+			state: false
+		});
+	}
 
      // document.onmousemove = function (myGameArea,event) {
      //
@@ -111,17 +126,16 @@ var myGameArea;
 
      }, false);
      myAudio.play();
-
 }
 
 function clearMyGameArea() {
 
-	var width = myGameArea.width;
-	var height = myGameArea.height;
+	var width = canvas.width;
+	var height = canvas.height;
 	var xoffset = 0;
 	var yoffset = 0;
 
-	myGameArea.clearRect(xoffset, yoffset, width, height);
+	ctx.clearRect(xoffset, yoffset, width, height);
 }
 
 //New object: Player
@@ -135,24 +149,25 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 	//Local func to draw player on screen
 	this.drawPlayer = function () {
 
-		myGameArea.beginPath();
-		myGameArea.arc(this.xPosition, this.yPosition, 35, 0, 2 * Math.PI, false);
-		myGameArea.lineWidth = 15;
-		myGameArea.strokeStyle = this.Color;
-		myGameArea.stroke();
+		ctx.beginPath();
+		ctx.arc(this.xPosition, this.yPosition, 20, 0, 2 * Math.PI, false);
+		ctx.lineWidth = 8;
+		ctx.strokeStyle = this.Color;
+		ctx.stroke();
 
-        myGameArea.fillStyle = "#ffffff";
-        myGameArea.fillText(this.name, this.xPosition + 50, this.yPosition - 10, 80, 30);
+		ctx.fillStyle = "#ffffff";
+		ctx.font = "20px Arial";
+		ctx.fillText(this.name, this.xPosition - 20, this.yPosition - 40, 80, 30);
 
 		//Gun following mouse
 
-		myGameArea.fillStyle = this.Color;
-		myGameArea.fillRect(this.xPosition - 7.5, this.yPosition, 15, 70);
+		ctx.fillStyle = this.Color;
+		ctx.fillRect(this.xPosition - 4, this.yPosition, 8, 40);
 
 
 		// myGameArea.fillStyle = this.Color;
 		// myGameArea.fillRect(this.xPosition, this.yPosition, 30, 30);
-		// myGameArea.font = "20px Arial";
+		// 
 
 	}
 
@@ -162,4 +177,18 @@ function drawInfo(score,health) {
 	$("#score").text("Score: "+score);
 	$("#health").text("Health: "+health);
 }
+
+
+(function () {
+	var sound = $('#click');
+	var form = $('#exitForm');
+
+	$('#exitButton').click(function () {
+		sound[0].play();
+	});
+	sound.on('ended', function () {
+		form.submit();
+	});
+}());
+
 

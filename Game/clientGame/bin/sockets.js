@@ -1,32 +1,31 @@
 /**
  * Created by lenardborn on 16/03/2017.
  */
-
 var socketio = require('socket.io');
 var SOCKET_LIST = {};
 
 ///////////////////////////////////////////////////
 ////////Model\\\\\\\\\\\\
 var Entity = function () {
-    var self = {
-        x:250,
-        y:250,
-        speedX:0,
-        speedY:0,
-        id:"",
-    }
-    self.update = function () {
-        self.updatePosition();
-    }
-    self.updatePosition = function () {
-        self.x += self.speedX;
-        self.y += self.speedY;
-    }
-    
-    self.getDistance = function (point) {
-        return Math.sqrt(Math.pow(self.x-point.x,2) + Math.pow(self.y-point.y,2));
-    }
-    return self;
+	var self = {
+		x: 250,
+		y: 250,
+		speedX: 0,
+		speedY: 0,
+		id: "",
+	}
+	self.update = function () {
+		self.updatePosition();
+	}
+	self.updatePosition = function () {
+		self.x += self.speedX;
+		self.y += self.speedY;
+	}
+
+	self.getDistance = function (point) {
+		return Math.sqrt(Math.pow(self.x - point.x, 2) + Math.pow(self.y - point.y, 2));
+	}
+	return self;
 }
 
 ///////////////////////////////////////////////////
@@ -65,6 +64,12 @@ var Player = function (id, name, color) {
                     self.coolDownTimer = 0;
                 }
             }
+
+            if (self.pressingShift) {
+                self.maxSpeed = 5;
+            } else {
+                self.maxSpeed = 2;
+            }
         }
         
         self.shoot = function (angle) {
@@ -74,21 +79,21 @@ var Player = function (id, name, color) {
         }
 
     self.updateSpeed = function () {
-        if(self.pressingRight){
+        if(self.pressingRight && self.x < 640 - 20){
             self.speedX = self.maxSpeed;
             self.mouseAngle = 0;
         }
-        else if(self.pressingLeft) {
+        else if(self.pressingLeft && self.x > 0 + 20) {
             self.speedX = -self.maxSpeed;
             self.mouseAngle =-180;
         }
         else
             self.speedX =0;
-        if(self.pressingUp) {
+        if(self.pressingUp && self.y > 0 + 20) {
             self.speedY = -self.maxSpeed;
             self.mouseAngle = -90;
         }
-        else if(self.pressingDown) {
+        else if(self.pressingDown && self.y < 360 - 20) {
             self.speedY = self.maxSpeed;
             self.mouseAngle = 90;
         }
@@ -103,15 +108,6 @@ Player.list = {};
 // var color;
 Player.onConnect = function (socket) {
     console.log(socket.id);
-    // socket.on('data', function(data) {
-    //
-    //     name = data.playerName;
-    //     color = data.playerColor;
-    //     console.log("werkt"+ color);
-    //
-    // });
-   // console.log('Connected: player'+socket.id+" kleur:"+color);
-
     var player = Player(socket.id,global.playerName,global.playerColor);
 
     socket.on('keyPress',function (data) {
@@ -125,6 +121,9 @@ Player.onConnect = function (socket) {
             player.pressingDown = data.state;
         else if(data.inputId === 'shoot')
             player.pressingShoot = data.state;
+        if (data.inputId === 'shift') {
+            player.pressingShift = data.state;
+        }
         // else if(data.inputId === 'mouseAngle'){
         //     player.mouseX = data.curX;
         //     player.mouseY = data.curY;
@@ -133,8 +132,8 @@ Player.onConnect = function (socket) {
 
     });
 }
-Player.onDisconnect = function(socket){
-    delete Player.list[socket.id];
+Player.onDisconnect = function (socket) {
+	delete Player.list[socket.id];
 }
 
 Player.update = function () {
@@ -217,6 +216,7 @@ Bullet.update = function(){
         }
     }
     return pack;
+
 }
 
 //     // console.log("data: name: " + data.playerName + ", color: " + data.playerColor);
@@ -232,35 +232,33 @@ var app = require('../routes/game').app;
 var logic = require('./logic');
 
 // all socket server side logic will take place here
-module.exports.listen = function(server){
+module.exports.listen = function (server) {
 
-    io = socketio.listen(server);
-    io.sockets.on('connection', function(socket){
+	io = socketio.listen(server);
+	io.on('connection', function (socket) {
 
        // socket.id = Math.floor((Math.random() * 999999) + 100000);
         SOCKET_LIST[socket.id] = socket;
 
-        Player.onConnect(socket);
+		Player.onConnect(socket);
 
-        socket.on('disconnect',function () {
-            delete SOCKET_LIST[socket.id];
-            Player.onDisconnect(socket);
-           // console.log('Disconnected: player'+socket.id);
-        });
+		socket.on('disconnect', function () {
+			delete SOCKET_LIST[socket.id];
+			Player.onDisconnect(socket);
+			// console.log('Disconnected: player'+socket.id);
+		});
 
-    });
-    return io;
+	});
+	return io;
 };
 setInterval(function () {
-    var pack = {
-        player:Player.update(),
-        bullet:Bullet.update(),
-    }
+	var pack = {
+		player: Player.update(),
+		bullet: Bullet.update(),
+	}
 
-    for(var i in SOCKET_LIST) {
-        var socket = SOCKET_LIST[i];
-        socket.emit('newPositions',pack);
-    }
-},1000/60);
-
-
+	for (var i in SOCKET_LIST) {
+		var socket = SOCKET_LIST[i];
+		socket.emit('newPositions', pack);
+	}
+}, 1000 / 60);
