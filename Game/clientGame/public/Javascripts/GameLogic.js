@@ -164,7 +164,6 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 		ctx.fillStyle = this.Color;
 		ctx.fillRect(this.xPosition - 4, this.yPosition, 8, 40);
 
-
 		// myGameArea.fillStyle = this.Color;
 		// myGameArea.fillRect(this.xPosition, this.yPosition, 30, 30);
 		// 
