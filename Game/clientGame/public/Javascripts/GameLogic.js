@@ -73,7 +73,7 @@ var myGameArea;
 	}
 
      var myAudio = document.getElementById('soundtrack');
-	myAudio.volume = 0.1;
+	myAudio.volume = 0.0;
      myAudio.addEventListener('timeupdate', function() {
          var buffer = .35;
          if(this.currentTime > this.duration - buffer){
