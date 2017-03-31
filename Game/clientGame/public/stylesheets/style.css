@@ -13,7 +13,7 @@ body {
 	/*font: 14px "FreshBot", Helvetica, Arial, sans-serif;*/
 	background-color: black;
 	margin: 0px;
-	
+
 }
 
 .error {
@@ -29,6 +29,7 @@ td {
 	font-family: 'FreshBot';
 	font-weight: 200;
 	color: lawngreen;
+	font-size: 20pt;
 }
 
 td {
@@ -146,6 +147,8 @@ label {
 	float: right;
 	margin-top: 17.5px;
 	margin-right: 5px;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
 	transform: rotate(-45deg);
 	transition: 0.2s;
 }
@@ -157,6 +160,8 @@ label {
 	float: right;
 	margin-top: 17.5px;
 	margin-right: -5px;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 	transition: 0.2s;
 }
@@ -222,10 +227,14 @@ label {
 }
 
 .change .line1 {
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
 
 .change .line2 {
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
 	transform: rotate(-45deg);
 }
 
