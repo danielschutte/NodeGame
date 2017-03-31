@@ -10,7 +10,7 @@ router.get('/newPlayer', function(req, res, next) {
 });
 
 // Player has to choose a username and a color, when failed redirect back to newplayer
-router.post('/newPlayer', function(req, res, next) {
+router.post('/newPlayer',function(req, res, next) {
     var playerName;
     var playerColorName;
     var playerColorHex;
@@ -43,6 +43,8 @@ router.post('/newPlayer', function(req, res, next) {
         // Route to game
         global.playerName = playerName;
         global.playerColor = playerColorHex;
+        playerName = "";
+        playerColorHex = "";
         res.render('gameField', { 
             title: 'Game',
             customJs:'/Javascripts/GameLogic.js',
