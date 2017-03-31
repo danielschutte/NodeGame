@@ -7,27 +7,27 @@ $(document).ready(function () {
 });
 var myGameArea;
 
-function startGame() {
-	myGameArea = document.getElementById("gameview").getContext("2d");
-	var socket = io.connect('/');
+ function startGame() {
+      myGameArea = document.getElementById("gameview").getContext("2d");
+     var socket = io.connect('/');
 
-	myGameArea.height = window.innerHeight;
-	myGameArea.width = window.innerWidth;
-	myGameArea.canvas.height = window.innerHeight;
-	myGameArea.canvas.width = window.innerWidth;
+     myGameArea.height = window.innerHeight;
+     myGameArea.width = window.innerWidth;
+     myGameArea.canvas.height = window.innerHeight;
+     myGameArea.canvas.width = window.innerWidth;
 
-	socket.on('newPositions', function (data) {
-		clearMyGameArea();
-		for (var i = 0; i < data.player.length; i++) {
-			v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y)
-			v.drawPlayer();
-		}
-		for (var i = 0; i < data.bullet.length; i++)
-			myGameArea.fillRect(data.bullet[i].x - 5, data.bullet[i].y - 5, 3, 3);
-	});
-
+     socket.on('newPositions', function (data) {
+         clearMyGameArea();
+         for (var i = 0; i < data.player.length; i++) {
+             v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y)
+             v.drawPlayer();
+         }
+         for (var i = 0; i < data.bullet.length; i++)
+             myGameArea.fillRect(data.bullet[i].x , data.bullet[i].y, 5, 5);
+     });
 
 	document.onkeydown = function (event) {
+
 		if (event.keyCode === 68) //d
 			socket.emit('keyPress', {
 				inputId: 'right',
@@ -73,9 +73,31 @@ function startGame() {
 			});
 
 	}
+	
+	document.onmousedown = function (event) {
+		socket.emit('keyPress',{inputId:'shoot',state:true});
+    }
+
+     document.onmouseup = function (event) {
+         socket.emit('keyPress',{inputId:'shoot',state:false});
+     }
+
+     document.onmousemove = function (myGameArea,event) {
+
+		//var rect = myGameArea.getBoundingClientRect();
+       // scaleX = canvas.width / rect.width;
+       // scaleY = canvas.height / rect.height;
+      // var x = (event.clientX -rect.left) *scaleX ;
+       //  var y = (event.clientY- rect.top) *scaleY ;
+		 var x = myGameArea.clientX;
+		 var y = myGameArea.clientY;
+         socket.emit('keyPress',{inputId:'mouseAngle',curX:x,curY:y});
+     }
+
 
 	var myAudio = document.getElementById('soundtrack');
 	myAudio.volume = 0.0;
+
 	myAudio.addEventListener('timeupdate', function () {
 		var buffer = .35;
 		if (this.currentTime > this.duration - buffer) {
@@ -88,6 +110,7 @@ function startGame() {
 }
 
 function clearMyGameArea() {
+
 	var width = myGameArea.width;
 	var height = myGameArea.height;
 	var xoffset = 0;
@@ -130,3 +153,7 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 	}
 
 }
+
+// function drawInfo(score,health) {
+// 	$("")
+// }
