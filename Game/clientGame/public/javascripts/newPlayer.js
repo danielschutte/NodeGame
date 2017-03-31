@@ -13,7 +13,6 @@ var colors = {"colors" : [
 var test1 = null;
 var test2 = null;
 
-var socket = io.connect('/');
 
 (function(){
     $.each(colors.colors, function(i, item){
