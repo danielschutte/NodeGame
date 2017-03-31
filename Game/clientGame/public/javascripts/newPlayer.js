@@ -10,10 +10,7 @@ var colors = {"colors" : [
     {"id" : 4,"name":"pink", "hex":"#ff00ce"}
 ]};
 
-var test1 = null;
-var test2 = null;
 
-var socket = io.connect('/');
 
 (function(){
     $.each(colors.colors, function(i, item){
