@@ -10,8 +10,6 @@ var colors = {"colors" : [
     {"id" : 4,"name":"pink", "hex":"#ff00ce"}
 ]};
 
-var test1 = null;
-var test2 = null;
 
 
 (function(){
