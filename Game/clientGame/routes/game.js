@@ -4,9 +4,9 @@ var logic = require('../bin/logic');
 var router = express.Router();
 
 /* GET users listing. */
-// router.get('/GameField', function(req, res, next) {
-//     res.render('GameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
-// });
+router.get('/GameField', function(req, res, next) {
+    res.render('GameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js'});
+});
 
 // New player
 router.get('/newPlayer', function(req, res, next) {
@@ -18,10 +18,6 @@ router.post('/newPlayer', function(req, res, next) {
     // get data from fields
     var playerName = req.body.playerName;
     var playerColor = req.body.playerColor;
-
-    var player = {};
-    player.name = playerName;
-    player.color = playerColor;
 
     // check the data
     req.checkBody('playerName', 'Fill in a name!').notEmpty();
@@ -38,9 +34,7 @@ router.post('/newPlayer', function(req, res, next) {
          global.playerName = playerName;
          global.playerColor = playerColor;
          //app.locals.player = logic.createPlayerByName(req.body.playerName, req.body.playerColor);
-
-         res.render('gameField', { title: 'new player' ,customJs:'/Javascripts/GameLogic.js', socket: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js', player: player});
-
+         res.render('gameField', { title: 'Game' ,customJs:'/Javascripts/GameLogic.js',socket: "https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"});
      }
 });
 
