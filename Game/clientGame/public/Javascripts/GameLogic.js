@@ -116,7 +116,7 @@ function startGame() {
 
 
      var myAudio = document.getElementById('soundtrack');
-	myAudio.volume = 0.0;
+	myAudio.volume = 0.5;
      myAudio.addEventListener('timeupdate', function() {
          var buffer = .35;
          if(this.currentTime > this.duration - buffer){

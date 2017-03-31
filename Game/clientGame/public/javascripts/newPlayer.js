@@ -24,7 +24,7 @@ function dropDown(click){
 }
 
 function setColor(click){
-    var x = document.getElementById("selectedColor");
+    var x = $("#selectedColor");
     $("#selectedColor").empty();
     var y = document.getElementById(click.id);
     var color = colors.colors[click.id];
