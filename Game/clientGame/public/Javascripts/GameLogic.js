@@ -1,30 +1,30 @@
 /**
  * Created by arjen on 16-3-2017.
  */
+var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 640;
+canvas.height = 360;
+
 
 $(document).ready(function () {
 	startGame();
 });
-var myGameArea;
 
- function startGame() {
-      myGameArea = document.getElementById("gameview").getContext("2d");
-     var socket = io.connect('/');
+function startGame() {
+	$('#canvasDiv').append(canvas);
 
-     myGameArea.height = window.innerHeight;
-     myGameArea.width = window.innerWidth;
-     myGameArea.canvas.height = window.innerHeight;
-     myGameArea.canvas.width = window.innerWidth;
+	var socket = io.connect('/');
 
-     socket.on('newPositions', function (data) {
-         clearMyGameArea();
-         for (var i = 0; i < data.player.length; i++) {
-             v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y)
-             v.drawPlayer();
-         }
-         for (var i = 0; i < data.bullet.length; i++)
-             myGameArea.fillRect(data.bullet[i].x , data.bullet[i].y, 5, 5);
-     });
+	socket.on('newPositions', function (data) {
+		clearMyGameArea();
+		for (var i = 0; i < data.player.length; i++) {
+			v = new PlayerCreate(data.player[i].number, data.player[i].name, data.player[i].color, data.player[i].x, data.player[i].y)
+			v.drawPlayer();
+		}
+		for (var i = 0; i < data.bullet.length; i++)
+			ctx.fillRect(data.bullet[i].x, data.bullet[i].y, 5, 5);
+	});
 
 	document.onkeydown = function (event) {
 
@@ -73,26 +73,36 @@ var myGameArea;
 			});
 
 	}
-	
+
 	document.onmousedown = function (event) {
-		socket.emit('keyPress',{inputId:'shoot',state:true});
-    }
+		socket.emit('keyPress', {
+			inputId: 'shoot',
+			state: true
+		});
+	}
 
-     document.onmouseup = function (event) {
-         socket.emit('keyPress',{inputId:'shoot',state:false});
-     }
+	document.onmouseup = function (event) {
+		socket.emit('keyPress', {
+			inputId: 'shoot',
+			state: false
+		});
+	}
 
-     document.onmousemove = function (myGameArea,event) {
+	document.onmousemove = function (ctx, event) {
 
 		//var rect = myGameArea.getBoundingClientRect();
-       // scaleX = canvas.width / rect.width;
-       // scaleY = canvas.height / rect.height;
-      // var x = (event.clientX -rect.left) *scaleX ;
-       //  var y = (event.clientY- rect.top) *scaleY ;
-		 var x = myGameArea.clientX;
-		 var y = myGameArea.clientY;
-         socket.emit('keyPress',{inputId:'mouseAngle',curX:x,curY:y});
-     }
+		// scaleX = canvas.width / rect.width;
+		// scaleY = canvas.height / rect.height;
+		// var x = (event.clientX -rect.left) *scaleX ;
+		//  var y = (event.clientY- rect.top) *scaleY ;
+		var x = ctx.clientX;
+		var y = ctx.clientY;
+		socket.emit('keyPress', {
+			inputId: 'mouseAngle',
+			curX: x,
+			curY: y
+		});
+	}
 
 
 	var myAudio = document.getElementById('soundtrack');
@@ -111,12 +121,12 @@ var myGameArea;
 
 function clearMyGameArea() {
 
-	var width = myGameArea.width;
-	var height = myGameArea.height;
+	var width = canvas.width;
+	var height = canvas.height;
 	var xoffset = 0;
 	var yoffset = 0;
 
-	myGameArea.clearRect(xoffset, yoffset, width, height);
+	ctx.clearRect(xoffset, yoffset, width, height);
 }
 
 //New object: Player
@@ -130,20 +140,20 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 	//Local func to draw player on screen
 	this.drawPlayer = function () {
 
-		myGameArea.beginPath();
-		myGameArea.arc(this.xPosition, this.yPosition, 35, 0, 2 * Math.PI, false);
-		myGameArea.lineWidth = 15;
-		myGameArea.strokeStyle = this.Color;
-		myGameArea.stroke();
+		ctx.beginPath();
+		ctx.arc(this.xPosition, this.yPosition, 20, 0, 2 * Math.PI, false);
+		ctx.lineWidth = 8;
+		ctx.strokeStyle = this.Color;
+		ctx.stroke();
 
-		myGameArea.fillStyle = "#ffffff";
-		myGameArea.font = "20px Arial";
-		myGameArea.fillText(this.name, this.xPosition - 20, this.yPosition - 60, 80, 30);
+		ctx.fillStyle = "#ffffff";
+		ctx.font = "20px Arial";
+		ctx.fillText(this.name, this.xPosition - 20, this.yPosition - 40, 80, 30);
 
 		//Gun following mouse
 
-		myGameArea.fillStyle = this.Color;
-		myGameArea.fillRect(this.xPosition - 7.5, this.yPosition, 15, 70);
+		ctx.fillStyle = this.Color;
+		ctx.fillRect(this.xPosition - 4, this.yPosition, 8, 40);
 
 
 		// myGameArea.fillStyle = this.Color;
