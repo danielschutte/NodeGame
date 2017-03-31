@@ -10,9 +10,6 @@ var colors = {"colors" : [
     {"id" : 4,"name":"pink", "hex":"#ff00ce"}
 ]};
 
-var test1 = null;
-var test2 = null;
-
 (function(){
     $.each(colors.colors, function(i, item){
         $('#colorList').append('<li id='+item.id+' style="color:'+item.hex+'" onclick="setColor(this)">'+item.name+'</li>');
@@ -39,7 +36,6 @@ function setColor(click){
     $('#selectedColor').css('color', color.hex);
 
     dropDown(this);
-
 }
 
 

@@ -21,11 +21,12 @@ var myGameArea;
              v.drawPlayer();
          }
          for (var i = 0; i < data.bullet.length; i++)
-             myGameArea.fillRect(data.bullet[i].x - 5, data.bullet[i].y - 5, 3, 3);
+             myGameArea.fillRect(data.bullet[i].x , data.bullet[i].y, 5, 5);
      });
 
 
 	document.onkeydown = function (event) {
+
 		if (event.keyCode === 68) //d
 			socket.emit('keyPress', {
 				inputId: 'right',
@@ -71,8 +72,30 @@ var myGameArea;
 			});
 
 	}
+	
+	document.onmousedown = function (event) {
+		socket.emit('keyPress',{inputId:'shoot',state:true});
+    }
+
+     document.onmouseup = function (event) {
+         socket.emit('keyPress',{inputId:'shoot',state:false});
+     }
+
+     document.onmousemove = function (myGameArea,event) {
+
+		//var rect = myGameArea.getBoundingClientRect();
+       // scaleX = canvas.width / rect.width;
+       // scaleY = canvas.height / rect.height;
+      // var x = (event.clientX -rect.left) *scaleX ;
+       //  var y = (event.clientY- rect.top) *scaleY ;
+		 var x = myGameArea.clientX;
+		 var y = myGameArea.clientY;
+         socket.emit('keyPress',{inputId:'mouseAngle',curX:x,curY:y});
+     }
+
 
      var myAudio = document.getElementById('soundtrack');
+	myAudio.volume = 0.0;
      myAudio.addEventListener('timeupdate', function() {
          var buffer = .35;
          if(this.currentTime > this.duration - buffer){
@@ -81,9 +104,11 @@ var myGameArea;
 
      }, false);
      myAudio.play();
+
 }
 
 function clearMyGameArea() {
+
 	var width = myGameArea.width;
 	var height = myGameArea.height;
 	var xoffset = 0;
@@ -102,11 +127,31 @@ function PlayerCreate(id, name, color, xPos, yPos) {
 
 	//Local func to draw player on screen
 	this.drawPlayer = function () {
+
+		myGameArea.beginPath();
+		myGameArea.arc(this.xPosition, this.yPosition, 35, 0, 2 * Math.PI, false);
+		myGameArea.lineWidth = 15;
+		myGameArea.strokeStyle = this.Color;
+		myGameArea.stroke();
+
+        myGameArea.fillStyle = "#ffffff";
+        myGameArea.fillText(this.name, this.xPosition + 50, this.yPosition - 10, 80, 30);
+
+		//Gun following mouse
+
 		myGameArea.fillStyle = this.Color;
-		myGameArea.fillRect(this.xPosition, this.yPosition, 30, 30);
-		myGameArea.font = "20px Arial";
-		myGameArea.fillStyle = "#000";
-		myGameArea.fillText(this.name, this.xPosition - 10, this.yPosition - 10, 80, 30);
+		myGameArea.fillRect(this.xPosition - 7.5, this.yPosition, 15, 70);
+
+
+		// myGameArea.fillStyle = this.Color;
+		// myGameArea.fillRect(this.xPosition, this.yPosition, 30, 30);
+		// myGameArea.font = "20px Arial";
+
 	}
+
 }
+
+// function drawInfo(score,health) {
+// 	$("")
+// }
 
