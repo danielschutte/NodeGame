@@ -1,24 +1,23 @@
 @font-face {
-	font-family: FreshBot;
-	src: url(FRESHBOT.TTF);
+    font-family: FreshBot;
+    src: url(FRESHBOT.TTF);
 }
 
 @font-face {
-	font-family: Chromia;
-	src: url(Chromia.otf);
+    font-family: Chromia;
+    src: url(Chromia.otf);
 }
 
 body {
-	padding: 50px;
-	/*font: 14px "FreshBot", Helvetica, Arial, sans-serif;*/
-	background-color: black;
-	margin: 0px;
-
+    padding: 50px;
+    /*font: 14px "FreshBot", Helvetica, Arial, sans-serif;*/
+    background-color: black;
+    margin: 0px;
 }
 
 .error {
-	color: red;
-	font-size: 16pt;
+    color: red;
+    font-size: 16pt;
 }
 
 
@@ -26,251 +25,282 @@ body {
 
 p,
 td {
-	font-family: 'FreshBot';
-	font-weight: 200;
-	color: lawngreen;
-	font-size: 20pt;
+    font-family: 'FreshBot';
+    font-weight: 200;
+    color: lawngreen;
+    font-size: 20pt;
 }
 
 td {
-	font-size: 24pt;
-	width: 120px;
+    font-size: 24pt;
+    width: 120px;
 }
 
 h1 {
-	font-family: 'Chromia';
-	color: lawngreen;
-	font-size: 28pt;
+    font-size: 28pt;
 }
 
+h1,
+h2,
 h3 {
-	font-family: 'Chromia';
-	color: lawngreen;
+    font-family: 'Chromia';
+    color: lawngreen;
 }
 
 a {
-	font-family: 'FreshBot';
-	color: lawngreen;
+    text-decoration: none;
+    font-family: 'FreshBot';
+    color: lawngreen;
 }
 
 label {
-	font-family: 'FreshBot';
-	color: lawngreen;
+    font-family: 'FreshBot';
+    color: lawngreen;
 }
 
 
 /*Welcome Screen*/
 
 .splashWelcomeContainer {
-	width: 100%;
+    width: 100%;
 }
 
 .splashWelcomeTitle {
-	text-align: center;
-	font-size: 48pt;
-	padding: 50px;
+    text-align: center;
+    font-size: 48pt;
+    padding: 50px;
 }
 
-.startButton {
-	width: 150px;
-	height: 75px;
-	border: solid lawngreen 2px;
-	margin: 0 -75px;
-	position: relative;
-	left: 50%;
-	font-size: 36pt;
-	font-family: 'FreshBot';
-	font-weight: 100;
-	color: lawngreen;
-	border-radius: 10px;
-	background-color: black;
-}
 
-#continueButton {
-	margin-top: 40px;
-	font-size: 26pt;
-	height: 50px;
-	width: 200px;
-}
 
 
 /*New Player*/
 
 .newPlayerContainer {
-	width: 100%;
+    width: 100%;
 }
 
 .newPlayerTitle {
-	width: 100%;
-	text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .playerOptionsTable {
-	position: relative;
-	display: inline-block;
-	width: 400px;
-	left: 50%;
-	margin: 0 -190px;
+    position: relative;
+    display: block;
+    width: 400px;
+    margin: auto;
 }
 
 .newPlayerNameInput {
-	border: solid 2px lawngreen;
-	border-radius: 5px;
-	background-color: black;
-	font-family: 'FreshBot';
-	font-size: 24pt;
-	color: lawngreen;
-	height: 35px;
-	width: 250px;
+    border: solid 2px lawngreen;
+    border-radius: 5px;
+    background-color: black;
+    font-family: 'FreshBot';
+    font-size: 24pt;
+    color: lawngreen;
+    height: 35px;
+    width: 250px;
 }
 
 .newPlayerColorInput {
-	border: solid 2px lawngreen;
-	border-radius: 5px;
-	background-color: black;
-	font-family: 'FreshBot';
-	font-size: 18pt;
-	color: lawngreen;
-	height: 35px;
-	width: 255px;
+    border: solid 2px lawngreen;
+    border-radius: 5px;
+    background-color: black;
+    font-family: 'FreshBot';
+    font-size: 18pt;
+    color: lawngreen;
+    height: 35px;
+    width: 255px;
 }
 
 .listArrow {
-	float: right;
-	height: 30px;
+    float: right;
+    height: 30px;
 }
 
 .line1 {
-	background-color: lawngreen;
-	height: 2px;
-	width: 15px;
-	float: right;
-	margin-top: 17.5px;
-	margin-right: 5px;
-	-webkit-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-	transition: 0.2s;
+    background-color: lawngreen;
+    height: 2px;
+    width: 15px;
+    float: right;
+    margin-top: 17.5px;
+    margin-right: 5px;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    transition: 0.2s;
 }
 
 .line2 {
-	background-color: lawngreen;
-	height: 2px;
-	width: 15px;
-	float: right;
-	margin-top: 17.5px;
-	margin-right: -5px;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
-	transition: 0.2s;
+    background-color: lawngreen;
+    height: 2px;
+    width: 15px;
+    float: right;
+    margin-top: 17.5px;
+    margin-right: -5px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    transition: 0.2s;
 }
 
 .colorList {
-	visibility: hidden;
-	opacity: 0;
-	color: lawngreen;
-	transition: 0.1s;
-	list-style: none;
-	margin: 0 0;
+    visibility: hidden;
+    opacity: 0;
+    color: lawngreen;
+    transition: 0.1s;
+    list-style: none;
+    margin: 0 0;
 }
 
 .colorList li {
-	width: 180px;
-	border-radius: 10px;
+    width: 180px;
+    border-radius: 10px;
 }
 
 .colorList li:hover {
-	list-style: circle;
+    list-style: circle;
 }
 
 .selectedColor {
-	margin: 0 40px;
-	display: inline-block;
+    margin: 0 40px;
+    display: inline-block;
 }
 
 .colorDropDown {
-	position: absolute;
-	width: 252px;
-	height: 35px;
-	margin-top: -12px;
-	background-color: black;
-	border: solid lawngreen 2px;
-	border-radius: 5px;
-	transition: 0.4s;
+    position: absolute;
+    width: 252px;
+    height: 35px;
+    margin-top: -12px;
+    background-color: black;
+    border: solid lawngreen 2px;
+    border-radius: 5px;
+    transition: 0.4s;
 }
 
 .change .colorDropDown {
-	height: inherit;
+    height: inherit;
 }
 
 .change .colorList {
-	visibility: visible;
-	opacity: 100;
+    visibility: visible;
+    opacity: 100;
 }
 
 .selectedColor {
-	margin: 0 0;
-	display: inline-block;
+    margin: 0 0;
+    display: inline-block;
 }
 
 .colorDropDown {
-	position: absolute;
-	width: 252px;
-	height: 35px;
-	margin-top: -12px;
-	background-color: black;
-	border: solid lawngreen 2px;
-	border-radius: 5px;
-	transition: 0.4s;
-	z-index: 10000;
+    position: absolute;
+    width: 252px;
+    height: 35px;
+    margin-top: -12px;
+    background-color: black;
+    border: solid lawngreen 2px;
+    border-radius: 5px;
+    transition: 0.4s;
+    z-index: 10000;
 }
 
 .change .line1 {
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .change .line2 {
-	-webkit-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 canvas {
-	width: 60%;
-	display: block;
-	padding: 0px;
-	margin: auto;
-	border: solid lawngreen 2px;
-	border-radius: 10px;
-	background-color: black;
+    width: 60%;
+    display: block;
+    padding: 0px;
+    margin: auto;
+    border: solid lawngreen 2px;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.backButton {
+    width: 80px;
+    height: 40px;
+    float: right;
+    border: solid lawngreen 2px;
+    margin-top: -50px;
+    font-size: 20pt;
+    font-family: 'FreshBot';
+    font-weight: 100;
+    color: lawngreen;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.footer {
+    position: relative;
+    padding: 1rem;
+    text-align: center;
+}
+
+.startButton,
+#testtable {
+    margin: 0 auto;
+    width: 300px;
+    height: 75px;
+    border: solid lawngreen 2px;
+    font-size: 36pt;
+    font-family: 'FreshBot';
+    font-weight: 100;
+    color: lawngreen;
+    border-radius: 10px;
+    background-color: black;
 }
 
 #gameview {
-	border: solid lawngreen 2px;
-	border-radius: 10px;
-	background-color: black;
+    border: solid lawngreen 2px;
+    border-radius: 10px;
+    background-color: black;
 }
 
 #restartButton {
-	visibility: hidden;
-	margin-right: 80px;
-	width: auto;
-	border-color: deepskyblue;
-	color: deepskyblue;
+    visibility: hidden;
+    margin-right: 80px;
+    width: auto;
+    border-color: deepskyblue;
+    color: deepskyblue;
 }
-.backButton {
-	width: 80px;
-	height: 40px;
-	float: right;
-	border: solid lawngreen 2px;
-	margin-top: -50px;
-	font-size: 20pt;
-	font-family: 'FreshBot';
-	font-weight: 100;
-	color: lawngreen;
-	border-radius: 10px;
-	background-color: black;
+
+#continueButton {
+    margin-top: 40px;
+    font-size: 26pt;
+    height: 50px;
+    width: 200px;
+}
+
+#instructions {
+    margin-top: 20px;
+    border-top: 2px solid lawngreen;
+    border-bottom: 2px solid lawngreen;
+    text-align: center;
+}
+
+#gameover {
+    margin: auto;
+    text-align: center;
+}
+
+div.vertical {
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+div.vertical>ul>li {
+    display: block;
+    margin-top: 10px;
 }

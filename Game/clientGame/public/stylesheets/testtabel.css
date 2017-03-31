@@ -1,0 +1,51 @@
+.browsertabel * {
+    margin: 0 auto;
+    padding: 0;
+    font-family: sans-serif;
+    font-style: normal;
+}
+
+.browsertabel h1{
+    margin-bottom: 10px;
+    margin-top: 40px;
+    text-align: center;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+}
+
+.browsertabel td {
+    font-family: sans-serif;
+    font-weight: 200;
+    color: lawngreen;
+    font-size: 16px;
+    width: auto;
+}
+
+.browsertabel > table {
+    width: 40%;
+}
+
+.browsertabel td {
+    border: 1px solid lawngreen;
+    text-align: center;
+}
+
+.browsertabel {
+    color: white;
+}
+
+#homeButton {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    width: auto;
+    height: auto;
+    border: solid lawngreen 2px;
+    font-size: 30pt;
+    font-family: 'FreshBot';
+    font-weight: 100;
+    color: lawngreen;
+    border-radius: 10px;
+    background-color: black;
+    margin-top: 20px;
+}

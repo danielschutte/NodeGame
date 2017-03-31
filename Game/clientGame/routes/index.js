@@ -7,4 +7,8 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'The Ultimate Stuck Shoot Game', customJs : '/Javascripts/indexApp.js'});
 });
 
+router.get('/testtable', function (req, res) {  
+  res.render('testtable', { title: 'The Ultimate Stuck Shoot Game',});
+});
+
 module.exports = router;

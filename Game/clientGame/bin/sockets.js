@@ -8,8 +8,8 @@ var SOCKET_LIST = {};
 ////////Model\\\\\\\\\\\\
 var Entity = function () {
 	var self = {
-		x: 250,
-		y: 250,
+		x: Math.floor(Math.random() * 600) + 30,
+		y: Math.floor(Math.random() * 300) + 30,
 		speedX: 0,
 		speedY: 0,
 		id: "",
